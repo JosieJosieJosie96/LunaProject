@@ -1,19 +1,10 @@
-// import { useParams } from 'react-router';
-// import useAutoFetch from '../hooks/useAutoFetch.js';
-
-
-
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { setProfileFilter } from '../store/slices/profileFilter.js';
-
 import {
-    CommentsContainer,
+
     MainContainer,
     ProfileLeftContainer,
     RightContainer,
     TopContainer,
-    Paragraph, SelectionContainer
+    Paragraph, SelectionContainer, EditContainer
 } from "../components/Profile.styled.js";
 
 
@@ -84,21 +75,10 @@ function Profile() {
 
         </TopContainer>
 
+<EditContainer>
 
-        <CommentsContainer>
-            <div className={'comments'}>
-                <h3>Comments</h3>
-            </div>
-            <div className={'review 1'}>
-                <h3>Review 1</h3>
-                {/*<p>{userdata.comments}</p>*/}
-            </div>
-            <div className={'review 2'}>
-                <h3>Review 2</h3>
-                {/*<p>{userdata.comments}</p>*/}
-            </div>
+</EditContainer>
 
-        </CommentsContainer>
         <RightContainer>
             {/*<h3>About {userdata.name}</h3>*/}
             <div className={'location2'}>

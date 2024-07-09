@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
 from registration.views import RegistrationView, RegistrationValidationView
@@ -30,5 +30,8 @@ urlpatterns = [
     path('backend/api/registration/validation/', RegistrationValidationView.as_view(), name='registration_validation'),
     path('backend/api/restaurants/new/', RestaurantCreateView.as_view(), name='restaurant_create'),
     path('backend/api/restaurants/', RestaurantGetView.as_view(), name='restaurant_get'),
+    # user views
+    path('backend/api/users/', include('user.urls')),
+
 
 ]
