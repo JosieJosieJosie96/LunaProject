@@ -7,7 +7,13 @@
 // import { useDispatch } from 'react-redux';
 // import { setProfileFilter } from '../store/slices/profileFilter.js';
 
-import {CommentsContainer, ProfileLeftContainer, RightContainer, TopContainer} from "../components/Profile.styled.js";
+import {
+    CommentsContainer,
+    MainContainer,
+    ProfileLeftContainer,
+    RightContainer,
+    TopContainer
+} from "../components/Profile.styled.js";
 
 
 
@@ -28,7 +34,7 @@ function Profile() {
     <>
       {/*{data && (*/}
         <>
-
+<MainContainer>
           <div className={'banner-image'}>
           <img src={'path/to/profile-image.jpg'} alt="Profile"/>
         </div>
@@ -109,7 +115,7 @@ function Profile() {
 
         </RightContainer>
 
-
+</MainContainer>
 
 
 

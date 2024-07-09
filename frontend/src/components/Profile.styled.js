@@ -1,28 +1,36 @@
 import styled from "styled-components";
 // import {ProfileLeftContainer} from "../pages/Profile.jsx";
 
-export const CommentsContainer = styled.div`
-width: 587px;
-height: 148px;
-
-
+export const MainContainer = styled.div`
   display: flex;
-
+  flex-direction: column;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+  height: 100vh;
+`;
+export const CommentsContainer = styled.div`
+
+      width: 587px;
+  height: 148px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
 
 `
 export const TopContainer = styled.div`
- display: flex;
+    display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: absolute;
+  top: 40px;
 `
 
 export const ProfileLeftContainer = styled.div`
-width: 232px;
-height: 185px;
-top: -1px;
+  width: 232px;
+  height: 185px;
   font-family: Roboto, sans-serif;
   font-size: 18px;
   font-weight: 300;
@@ -30,6 +38,8 @@ top: -1px;
   text-align: left;
   margin-top: 12px;
   margin-left: 68px;
+  position: absolute;
+  left: 0;
   //  .reviews, .comments, .restaurants, .editProfile {
   //  border-bottom: 1px solid #979797;
   //  padding-bottom: 10px;
@@ -38,4 +48,7 @@ top: -1px;
     
 `
 
-export const RightContainer = styled.div``
+export const RightContainer = styled.div`
+  position: absolute;
+  right: 0;
+`
