@@ -25,9 +25,3 @@ class RegistrationView(GenericAPIView):
             fail_silently=False, )
         serializer.save(code=code)
         return Response(serializer.data)
-
-
-
-
-
-
