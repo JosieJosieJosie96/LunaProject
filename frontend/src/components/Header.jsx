@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../../ui/Button';
 
@@ -28,9 +28,15 @@ function Header() {
         <NavLink to="/search">Search</NavLink>
         <NavLink to="/profile">Profile</NavLink>
         <div>
-          <Button>Login</Button>
-          <Button>Sign up</Button>
-          <Button>Logout</Button>
+          <Link to="/login">
+            <Button>Login</Button>
+          </Link>
+          <Link to="/signup">
+            <Button>Sign up</Button>
+          </Link>
+          <Link to="/login">
+            <Button>Logout</Button>
+          </Link>
         </div>
       </DivNav>
     </StyledHeader>
