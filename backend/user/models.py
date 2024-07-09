@@ -5,6 +5,8 @@ from review.models import Review
 
 
 class User(AbstractUser):
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
     location = models.CharField(max_length=50, blank=True)
     phone = models.CharField(max_length=50, blank=True)
     things_i_love = ArrayField(ArrayField(models.TextField()), null=True)
