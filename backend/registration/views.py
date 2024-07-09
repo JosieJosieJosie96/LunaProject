@@ -26,6 +26,7 @@ class RegistrationView(GenericAPIView):
         serializer.save(code=code)
         return Response(serializer.data)
 
+
 class RegistrationValidationView(GenericAPIView):
     queryset = Registration.objects.all()
     serializer_class = RegistrationValidationSerializer
@@ -34,6 +35,4 @@ class RegistrationValidationView(GenericAPIView):
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
 
-
         return Response(serializer.data)
-

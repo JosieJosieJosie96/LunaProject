@@ -3,7 +3,6 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
 from registration.models import Registration
-from user.serializers import CreateUserSerializer
 
 User = get_user_model()
 
@@ -69,4 +68,3 @@ class RegistrationValidationSerializer(serializers.Serializer):
         new_user.set_password(validated_data.get('password'))
         new_user.save()
         return new_user
-
