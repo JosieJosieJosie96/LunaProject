@@ -10,6 +10,7 @@ class RestaurantCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['user']
 
+
 class RestaurantGetSerializer(serializers.ModelSerializer):
     # user = UserSerializer()
     class Meta:
