@@ -14,7 +14,7 @@ function AppLayout() {
     <StyledLayout>
       <Header />
       <div style={{ overflow: scroll }}>
-        <main style={{ height: '100%' }}>
+        <main style={{ height: '100%', backgroundColor: '#F8F8F8' }}>
           <Outlet />
         </main>
       </div>
