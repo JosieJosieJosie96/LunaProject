@@ -5,7 +5,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
 from registration.models import Registration
-from registration.serializers import RegistrationSerializer
+from registration.serializers import RegistrationSerializer, RegistrationValidationSerializer
 
 
 class RegistrationView(GenericAPIView):
@@ -24,4 +24,15 @@ class RegistrationView(GenericAPIView):
             ['{}'.format(request.data.get('email'))],
             fail_silently=False, )
         serializer.save(code=code)
+        return Response(serializer.data)
+
+
+class RegistrationValidationView(GenericAPIView):
+    queryset = Registration.objects.all()
+    serializer_class = RegistrationValidationSerializer
+    permission_classes = []
+
+    def post(self, request):
+        serializer = self.get_serializer(data=request.data)
+
         return Response(serializer.data)

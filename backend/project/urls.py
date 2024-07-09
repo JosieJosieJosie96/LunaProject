@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 
-from registration.views import RegistrationView
+from registration.views import RegistrationView, RegistrationValidationView
 
 urlpatterns = [
     path('backend/admin/', admin.site.urls),
@@ -26,4 +26,6 @@ urlpatterns = [
     path('backend/api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('backend/api/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_refresh'),
     path('backend/api/registration/', RegistrationView.as_view(), name='registration'),
+    path('backend/api/registration/validation/', RegistrationValidationView.as_view(), name='registration_validation'),
+
 ]

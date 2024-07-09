@@ -1,5 +1,5 @@
 from rest_framework.generics import ListCreateAPIView
 
 
-class AllUsersView(ListCreateAPIView):
+class CreateUserView(ListCreateAPIView):
     pass
