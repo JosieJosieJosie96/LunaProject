@@ -4,7 +4,7 @@ stages:
   - lint
   - push
   - cleanup
-#  - deploy
+  - deploy
 
 before_script:
   - docker login -u "gitlab-ci-token" -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
@@ -49,14 +49,14 @@ cleanup:
     - docker rmi -f "$CI_PIPELINE_ID":"$CI_COMMIT_REF_NAME"
     - docker compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml down --remove-orphans
 
-#deploy:
-#  stage: deploy
-#  when: manual
-#  only:
-#    - master
-#  script:
-#    - docker compose -f docker-compose.deploy.yml pull
-#    - docker compose -f docker-compose.deploy.yml down --remove-orphans
-##    - docker volume rm groupe-1_frontend_build || true
-#    - docker compose -f docker-compose.deploy.yml up -d
+deploy:
+  stage: deploy
+  when: manual
+  only:
+    - master
+  script:
+    - docker compose -f docker-compose.deploy.yml pull
+    - docker compose -f docker-compose.deploy.yml down --remove-orphans
+    # - docker volume rm luna-group-1_frontend_build || true
+    - docker compose -f docker-compose.deploy.yml up -d
 

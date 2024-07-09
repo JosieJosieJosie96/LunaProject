@@ -1,6 +1,19 @@
 # Pull miniconda from docker hub as base image
 FROM continuumio/miniconda3:latest
 
+#creating folder in the container
+RUN mkdir -p /backend
+RUN mkdir -p /scripts
+RUN mkdir -p /static-files
+RUN mkdir -p /media-files
+RUN mkdir -p /frontend
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install curl -y
+# Install node js version 20.x
+RUN curl https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
+
 # Copy the requirements file from local folder to image
 COPY ./backend/requirements.yml /backend/requirements.yml
 
@@ -21,6 +34,15 @@ ENV PATH /opt/conda/envs/luna-group-1/bin:$PATH
 RUN echo "source activate luna-group-1" >~/.bashrc
 
 ENV PYTHONDONTWRITEBYTECODE=1
+
+WORKDIR /frontend
+#COPY ./frontend/package.json /frontend/package.json
+#COPY ./frontend/package-lock.json /frontend/package-lock.json
+
+#RUN npm install
+
+COPY ./frontend /frontend
+#RUN npm run build
 
 # pass all the files and folders from local folder to image
 COPY ./backend /backend
