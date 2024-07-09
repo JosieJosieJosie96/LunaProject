@@ -1,10 +1,23 @@
 import styled from "styled-components";
-import {ProfileLeftContainer} from
-import Profile from "../pages/Profile.jsx"; src/pages/Profile
+// import {ProfileLeftContainer} from "../pages/Profile.jsx";
+
 export const CommentsContainer = styled.div`
-bg-color: "black"
+width: 587px;
+height: 148px;
+
+
+  display: flex;
+
+  align-items: center;
+  width: 100%;
+
 `
-export const TopContainer = styled.div``
+export const TopContainer = styled.div`
+ display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`
 
 export const ProfileLeftContainer = styled.div`
 width: 232px;
@@ -17,10 +30,10 @@ top: -1px;
   text-align: left;
   margin-top: 12px;
   margin-left: 68px;
-    .reviews, .comments, .restaurants, .editProfile {
-    border-bottom: 1px solid #979797;
-    padding-bottom: 10px;
-  }
+  //  .reviews, .comments, .restaurants, .editProfile {
+  //  border-bottom: 1px solid #979797;
+  //  padding-bottom: 10px;
+  //}
 
     
 `

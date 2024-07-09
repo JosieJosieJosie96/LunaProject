@@ -1,19 +1,19 @@
-import { useParams } from 'react-router';
+// import { useParams } from 'react-router';
 // import useAutoFetch from '../hooks/useAutoFetch.js';
-import Header from '../components/Header.jsx';
+
 
 
 // import { useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { setProfileFilter } from '../store/slices/profileFilter.js';
-import Footer from "../components/Footer.jsx";
+
 import {CommentsContainer, ProfileLeftContainer, RightContainer, TopContainer} from "../components/Profile.styled.js";
 
 
 
 
 function Profile() {
-  const { profileId } = useParams()
+  // const { profileId } = useParams()
   // const params = useParams()
   // const endpointToFetch = profileId ? `users/${profileId}/` : 'users/me/'
   // const { data, error } = useAutoFetch('get', endpointToFetch, '', params)
@@ -28,7 +28,7 @@ function Profile() {
     <>
       {/*{data && (*/}
         <>
-          <Header /*userdata={data}*/ profileId={profileId} />
+
           <div className={'banner-image'}>
           <img src={'path/to/profile-image.jpg'} alt="Profile"/>
         </div>
@@ -114,7 +114,7 @@ function Profile() {
 
 
 
-        <Footer/>
+
 
     </>
         )
