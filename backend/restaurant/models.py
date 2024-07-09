@@ -3,7 +3,6 @@ from django.db import models
 from project import settings
 
 
-
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
@@ -18,4 +17,3 @@ class Restaurant(models.Model):
     price_level = models.CharField()
     image = models.ImageField(upload_to='restaurant_images')
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-
