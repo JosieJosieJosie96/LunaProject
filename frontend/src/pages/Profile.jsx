@@ -38,7 +38,7 @@ function Profile() {
                 <img src={'path/to/profile-image.jpg'} alt="Profile"/>
             </div>
 
-            <div className={'reviews'}>
+            <div className={"reviews"}>
                 <h3>Reviews</h3>
 
             </div>
@@ -49,7 +49,7 @@ function Profile() {
                 <h3>Restaurants</h3>
 
             </div>
-            <div className={'edit profile'}>
+            <div className={'editProfile'}>
                 <h3>Edit Profile</h3>
 
             </div>

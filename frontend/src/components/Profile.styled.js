@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import {ProfileLeftContainer} from
+import Profile from "../pages/Profile.jsx"; src/pages/Profile
 export const CommentsContainer = styled.div`
 bg-color: "black"
 `
@@ -15,8 +17,12 @@ top: -1px;
   text-align: left;
   margin-top: 12px;
   margin-left: 68px;
-border-bottom: 1px solid #979797
+    .reviews, .comments, .restaurants, .editProfile {
+    border-bottom: 1px solid #979797;
     padding-bottom: 10px;
+  }
+
+    
 `
 
 export const RightContainer = styled.div``
