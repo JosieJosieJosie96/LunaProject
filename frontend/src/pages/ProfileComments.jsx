@@ -1,22 +1,22 @@
-import {CommentsContainer} from "../components/Profile.styled.js";
+
+import { ContentContainer, SelectionContainer } from "../components/Profile.styled.js";
+
 function ProfileComments() {
-    return(
-    <>
-<CommentsContainer>
-            <div className={'comments'}>
-                <h3>Comments</h3>
-            </div>
-            <div className={'review 1'}>
-                <h3>Review 1</h3>
-                {/*<p>{userdata.comments}</p>*/}
-            </div>
-            <div className={'review 2'}>
-                <h3>Review 2</h3>
-                {/*<p>{userdata.comments}</p>*/}
-            </div>
+  return (
+    <ContentContainer>
+      <div className={'comments'}>
+        <h3>Comments</h3>
+      </div>
+      <SelectionContainer>
+        <h3>Review 1</h3>
+        {/*<p>{userdata.comments}</p>*/}
+      </SelectionContainer>
+      <SelectionContainer>
+        <h3>Review 2</h3>
+        {/*<p>{userdata.comments}</p>*/}
+      </SelectionContainer>
+    </ContentContainer>
+  );
+}
 
-        </CommentsContainer>
-</>
-    )}
-
-export default ProfileComments
+export default ProfileComments;
