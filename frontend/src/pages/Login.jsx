@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import Input from '../components/Input';
 import { HeadingForm } from '../../ui/HeadingForm';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import { BeatLoader } from 'react-spinners';
@@ -27,10 +27,16 @@ export const SytledContainerForm = styled.div`
 `;
 
 function Login() {
-  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   async function login(obj) {
     setIsLoading(true);
+    setErrorMessage('');
+
     try {
       const res = await axios.post(
         `http://localhost:8000/backend/api/token/`,
@@ -41,12 +47,20 @@ function Login() {
           },
         },
       );
+      const token = res.data.access;
+
+      window.localStorage.setItem('token', `${token}`);
+
+      setIsSuccess(true);
+      setIsLoading(false);
 
       return res.data;
     } catch (error) {
+      setErrorMessage(error.response.data);
+      setIsSuccess(false);
+      setIsLoading(false);
       console.log(error);
     }
-    setIsLoading(false);
   }
 
   function onSubmit(data) {
@@ -54,47 +68,53 @@ function Login() {
   }
 
   return (
-    <StyledContainer>
-      <SytledContainerForm>
-        <div>
-          <HeadingForm>LOG IN TO YOUR ACCOUNT</HeadingForm>
-        </div>
-        {isLoading && <BeatLoader />}
-        <div style={{ marginTop: '40px' }}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              htmlFor="username"
-              type="text"
-              register={register}
-              name="username"
-            >
-              Username
-            </Input>
-            <Input
-              htmlFor="password"
-              type="password"
-              register={register}
-              name="password"
-            >
-              Password
-            </Input>
-            <Link
-              style={{
-                display: 'flex',
-                justifyContent: 'end',
-                marginBottom: '16px',
-              }}
-              to="/forgotPassword"
-            >
-              Forgot Password?
-            </Link>
+    <>
+      {isSuccess ? (
+        navigate('/')
+      ) : (
+        <StyledContainer>
+          <SytledContainerForm>
             <div>
-              <Button>Log In </Button>
+              <HeadingForm>LOG IN TO YOUR ACCOUNT</HeadingForm>
             </div>
-          </form>
-        </div>
-      </SytledContainerForm>
-    </StyledContainer>
+            {isLoading && <BeatLoader />}
+            <div style={{ marginTop: '40px' }}>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Input
+                  htmlFor="username"
+                  type="text"
+                  register={register}
+                  name="username"
+                >
+                  Username
+                </Input>
+                <Input
+                  htmlFor="password"
+                  type="password"
+                  register={register}
+                  name="password"
+                >
+                  Password
+                </Input>
+                <Link
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'end',
+                    marginBottom: '16px',
+                  }}
+                  to="/forgotPassword"
+                >
+                  Forgot Password?
+                </Link>
+                <div>
+                  <Button>Log In </Button>
+                </div>
+              </form>
+            </div>
+          </SytledContainerForm>
+        </StyledContainer>
+      )}
+    </>
   );
 }
 
