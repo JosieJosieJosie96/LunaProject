@@ -58,5 +58,6 @@ deploy:
     - docker compose -f docker-compose.deploy.yml pull
     - docker compose -f docker-compose.deploy.yml down --remove-orphans
     - docker volume rm group-1_frontend_build || true
+    - docker volume rm group-1_postgres_data || true
     - docker compose -f docker-compose.deploy.yml up -d
 

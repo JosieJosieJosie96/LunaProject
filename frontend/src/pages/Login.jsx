@@ -4,6 +4,9 @@ import Input from '../components/Input';
 import { HeadingForm } from '../../ui/HeadingForm';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+import { BeatLoader } from 'react-spinners';
 
 export const StyledContainer = styled.div`
   display: flex;
@@ -24,7 +27,31 @@ export const SytledContainerForm = styled.div`
 `;
 
 function Login() {
-  const { register } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit } = useForm();
+  async function login(obj) {
+    setIsLoading(true);
+    try {
+      const res = await axios.post(
+        `http://localhost:8000/backend/api/token/`,
+        obj,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  }
+
+  function onSubmit(data) {
+    login(data);
+  }
 
   return (
     <StyledContainer>
@@ -32,10 +59,16 @@ function Login() {
         <div>
           <HeadingForm>LOG IN TO YOUR ACCOUNT</HeadingForm>
         </div>
+        {isLoading && <BeatLoader />}
         <div style={{ marginTop: '40px' }}>
-          <form>
-            <Input htmlFor="email" type="text" register={register} name="email">
-              Email Address
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              htmlFor="username"
+              type="text"
+              register={register}
+              name="username"
+            >
+              Username
             </Input>
             <Input
               htmlFor="password"
