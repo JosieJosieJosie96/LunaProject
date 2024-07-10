@@ -1,118 +1,139 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
-
-    MainContainer,
-    ProfileLeftContainer,
-    RightContainer,
-    TopContainer,
-    Paragraph, SelectionContainer, EditContainer
+  Paragraph,
+  EditContainer
 } from "../components/Profile.styled.js";
+import Input from "../components/Input.jsx";
+import { Button } from "../../ui/Button.jsx";
 
+function EditProfile() {
+  const [formData, setFormData] = useState({
+    username: '',
+    firstName: '',
+    lastName: '',
+    location: '',
+    phone: '',
+    thingsILove: '',
+    description: ''
+  });
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get('https://your-api-endpoint.com/user/profile');
+        setFormData({
+          username: response.data.username,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          location: response.data.location,
+          phone: response.data.phone,
+          thingsILove: response.data.thingsILove,
+          description: response.data.description
+        });
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+        setLoading(false);
+      }
+    };
 
-function Profile() {
-  // const { profileId } = useParams()
-  // const params = useParams()
-  // const endpointToFetch = profileId ? `users/${profileId}/` : 'users/me/'
-  // const { data, error } = useAutoFetch('get', endpointToFetch, '', params)
-  // const dispatch = useDispatch()
+    fetchProfileData();
+  }, []);
 
-// useEffect(() => {
-//   dispatch(setProfileFilter('posts'));
-// }, [dispatch]);
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch('https://your-api-endpoint.com/user/profile', formData);
+      console.log('Profile updated successfully:', response.data);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading profile data.</div>;
+  }
 
   return (
-    <>
-      {/*{data && (*/}
-        <>
-<MainContainer>
-          <div className={'banner-image'}>
-          <img src={'path/to/profile-image.jpg'} alt="banner"/>
+    <EditContainer>
+      <form onSubmit={handleSubmit}>
+        <Paragraph>Username</Paragraph>
+        <Input
+          htmlFor="username"
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+        />
+        <Paragraph>First Name</Paragraph>
+        <Input
+          htmlFor="first-name"
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+        <Paragraph>Last Name</Paragraph>
+        <Input
+          htmlFor="last-name"
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+        <Paragraph>Location</Paragraph>
+        <Input
+          htmlFor="location"
+          type="text"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+        />
+        <Paragraph>Phone</Paragraph>
+        <Input
+          htmlFor="phone"
+          type="text"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+        <Paragraph>Things I Love</Paragraph>
+        <Input
+          htmlFor="thingsILove"
+          type="text"
+          name="thingsILove"
+          value={formData.thingsILove}
+          onChange={handleChange}
+        />
+        <Paragraph>Description</Paragraph>
+        <Input
+          htmlFor="description"
+          type="text"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+        <div>
+          <Button type="submit">Save</Button>
         </div>
-
-        <ProfileLeftContainer>
-            <div className={'profileimage'}>
-                <img src={'path/to/profile-image.jpg'} alt="Profile"/>
-            </div>
-
-            <SelectionContainer>
-                <h3>Reviews</h3>
-
-            </SelectionContainer>
-            <SelectionContainer>
-                <h3>Comments</h3>
-            </SelectionContainer>
-            <SelectionContainer>
-                <h3>Restaurants</h3>
-
-            </SelectionContainer>
-            <SelectionContainer>
-                <h3>Edit Profile</h3>
-
-            </SelectionContainer>
-
-
-        </ProfileLeftContainer>
-        <TopContainer>
-            <div className={'name'}>
-                <Paragraph>name</Paragraph>
-                {/*<p>{userdata.name}</p>*/}
-            </div>
-            <div className={'location'}>
-                <p>location</p>
-                {/*<p>{userdata.location}</p>*/}
-            </div>
-            <div className={'reviews'}>
-                <p>reviews</p>
-                {/*<p>{userdata.reviews}</p>*/}
-            </div>
-            <div className={'comments'}>
-                <p>comments</p>
-                {/*<p>{userdata.comments}</p>*/}
-            </div>
-
-
-        </TopContainer>
-
-<EditContainer>
-
-</EditContainer>
-
-        <RightContainer>
-            {/*<h3>About {userdata.name}</h3>*/}
-            <div className={'location2'}>
-                <h3>Location</h3>
-                {/*<p>{userdata.location}</p>*/}
-            </div>
-            <div className={'review 1'}>
-                <h3>Luna member since</h3>
-                {/*<p>{userdata.created}</p>*/}
-            </div>
-            <div className={'things I love'}>
-                <h3>Things I love</h3>
-                {/*<p>{userdata.likes}</p>*/}
-            </div>
-            <div className={'description'}>
-                <h3>Description</h3>
-                {/*<p>{userdata.description}</p>*/}
-            </div>
-
-        </RightContainer>
-
-</MainContainer>
-
-
-
-
-
-
-    </>
-        )
-        {/*{error && <Header error />}*/}
-    </>
-  )
+      </form>
+    </EditContainer>
+  );
 }
 
-
-export default Profile;
+export default EditProfile;

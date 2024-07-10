@@ -7,7 +7,7 @@ import SignUp from './pages/SignUp';
 import RegistrationValidation from './pages/RegistrationValidation';
 import ErrorPage from './pages/ErrorPage';
 
-import Profile from './pages/Profile';
+import ProfileBase from './pages/ProfileBase.jsx';
 import RestaurantPage from './pages/RestaurantPage';
 import CreateRestaurant from './pages/CreateRestaurant';
 import { Toaster } from 'react-hot-toast';
@@ -29,7 +29,7 @@ function App() {
               element={<RestaurantPage />}
             />
 
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<ProfileBase />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
