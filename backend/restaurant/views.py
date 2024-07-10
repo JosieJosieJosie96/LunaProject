@@ -64,6 +64,7 @@ class RestaurantUserView(GenericAPIView):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
+
 class RestaurantSpecificView(GenericAPIView):
     serializer_class = RestaurantGetSerializer
     permission_classes = []
