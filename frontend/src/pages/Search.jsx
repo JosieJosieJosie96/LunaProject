@@ -13,7 +13,7 @@ const InputContainer = styled.div`
   width: 100%;
   height: 36px;
   border: 1px solid #05050513;
-  padding: 8px 0;
+  /* padding: 8px 0; */
 `;
 
 const Input = styled.input`
@@ -55,7 +55,7 @@ function Search() {
         <select
           style={{
             width: '20%',
-            height: '100%',
+            height: '38px',
             border: 'none',
             fontSize: '20px',
             color: 'gray',
@@ -65,12 +65,40 @@ function Search() {
         </select>
       </InputContainer>
       <TextContainer>
-        <button onClick={() => setCurrentPage(<RestaurantCard />)}>
+        <button
+          style={{
+            borderBottom:
+              currentPage.type.name === 'RestaurantCard'
+                ? '2px solid orange'
+                : '',
+            color:
+              currentPage.type.name === 'RestaurantCard' ? 'black' : 'gray',
+          }}
+          onClick={() => setCurrentPage(<RestaurantCard />)}
+        >
           RESTAURANTS
         </button>
 
-        <button onClick={() => setCurrentPage(<ReviewCard />)}>REVIEWS</button>
-        <button onClick={() => setCurrentPage(<UserCard />)}>USERS</button>
+        <button
+          style={{
+            borderBottom:
+              currentPage.type.name === 'ReviewCard' ? '2px solid orange' : '',
+            color: currentPage.type.name === 'ReviewCard' ? 'black' : 'gray',
+          }}
+          onClick={() => setCurrentPage(<ReviewCard />)}
+        >
+          REVIEWS
+        </button>
+        <button
+          style={{
+            borderBottom:
+              currentPage.type.name === 'UserCard' ? '2px solid orange' : '',
+            color: currentPage.type.name === 'UserCard' ? 'black' : 'gray',
+          }}
+          onClick={() => setCurrentPage(<UserCard />)}
+        >
+          USERS
+        </button>
       </TextContainer>
       <div
         style={{

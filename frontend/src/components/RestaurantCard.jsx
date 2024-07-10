@@ -10,12 +10,13 @@ export const Card = styled.div`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
   min-width: 300px;
   max-width: 300px;
+  background-color: white;
 `;
 
 export const Container = styled.div`
   /* margin-left: auto;
   margin-right: auto; */
-  width: 100&;
+  width: 100%;
 
   /* padding-left: 12px;
   padding-right: 12px; */
