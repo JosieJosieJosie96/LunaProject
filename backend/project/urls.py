@@ -19,7 +19,8 @@ from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
 from registration.views import RegistrationView, RegistrationValidationView
-from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView
+from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView, RestaurantUserView, \
+    RestaurantSpecificView
 
 urlpatterns = [
     path('backend/admin/', admin.site.urls),
@@ -31,6 +32,8 @@ urlpatterns = [
     path('backend/api/restaurants/new/', RestaurantCreateView.as_view(), name='restaurant_create'),
     path('backend/api/restaurants/', RestaurantGetView.as_view(), name='restaurant_get'),
     path('backend/api/restaurants/category/<str:category>/', RestaurantCategoryView.as_view(), name='restaurant_category'),
+    path('backend/api/restaurants/user/<int:user_id>/', RestaurantUserView.as_view(), name='restaurant_user'),
+    path('backend/api/restaurants/<int:id>/', RestaurantSpecificView.as_view(), name='restaurant_specific'),
     # user views
     path('backend/api/users/', include('user.urls')),
 
