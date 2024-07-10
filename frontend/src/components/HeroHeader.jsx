@@ -30,7 +30,7 @@ export const ContainerAll = styled.div`
   padding: 0 24px 0 24px;
 `;
 
-const InputDiv = styled.div`
+export const InputDiv = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -41,7 +41,7 @@ const InputDiv = styled.div`
   width: 100%;
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   height: 32px;
   width: 384px;
   border-radius: 6px;

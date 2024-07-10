@@ -22,7 +22,7 @@ function Header() {
   return (
     <StyledHeader>
       <div>
-        <img src={LogoImg} alt="logo" />
+        <img src="luna-project-assets/logo.svg" alt="logo" />
       </div>
       <DivNav>
         <NavLink to="/">Home</NavLink>
