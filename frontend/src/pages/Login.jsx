@@ -47,9 +47,12 @@ function Login() {
           },
         },
       );
-      const token = res.data.access;
 
-      window.localStorage.setItem('token', `${token}`);
+      const accessToken = res.data.access;
+      const refreshToken = res.data.access;
+
+      window.localStorage.setItem('token', `${accessToken}`);
+      window.localStorage.setItem('refreshToken', `${refreshToken}`);
 
       setIsSuccess(true);
       setIsLoading(false);
@@ -77,39 +80,42 @@ function Login() {
             <div>
               <HeadingForm>LOG IN TO YOUR ACCOUNT</HeadingForm>
             </div>
-            {isLoading && <BeatLoader />}
             <div style={{ marginTop: '40px' }}>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Input
-                  htmlFor="username"
-                  type="text"
-                  register={register}
-                  name="username"
-                >
-                  Username
-                </Input>
-                <Input
-                  htmlFor="password"
-                  type="password"
-                  register={register}
-                  name="password"
-                >
-                  Password
-                </Input>
-                <Link
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'end',
-                    marginBottom: '16px',
-                  }}
-                  to="/forgotPassword"
-                >
-                  Forgot Password?
-                </Link>
-                <div>
-                  <Button>Log In </Button>
-                </div>
-              </form>
+              {isLoading ? (
+                <BeatLoader />
+              ) : (
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <Input
+                    htmlFor="username"
+                    type="text"
+                    register={register}
+                    name="username"
+                  >
+                    Username
+                  </Input>
+                  <Input
+                    htmlFor="password"
+                    type="password"
+                    register={register}
+                    name="password"
+                  >
+                    Password
+                  </Input>
+                  <Link
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'end',
+                      marginBottom: '16px',
+                    }}
+                    to="/forgotPassword"
+                  >
+                    Forgot Password?
+                  </Link>
+                  <div>
+                    <Button>Log In </Button>
+                  </div>
+                </form>
+              )}
             </div>
           </SytledContainerForm>
         </StyledContainer>
