@@ -1,10 +1,10 @@
 import {Button} from "../../ui/Button.jsx";
-import {CommentsContainer} from "../components/Profile.styled.js";
+import {ContentContainer} from "../components/Profile.styled.js";
 
 function ProfileRestaurants() {
     return(
         <>
-            <CommentsContainer>
+            <ContentContainer>
                 <div className={'comments'}>
                     <h3>Restaurants</h3>
                 </div>
@@ -14,7 +14,7 @@ function ProfileRestaurants() {
                 </div>
 
 
-            </CommentsContainer>
+            </ContentContainer>
             <div>
                 <Button>Create Restaurant</Button>
             </div>

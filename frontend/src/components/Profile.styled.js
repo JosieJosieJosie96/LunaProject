@@ -2,34 +2,48 @@ import styled from "styled-components";
 // import {ProfileLeftContainer} from "../pages/ProfileBase.jsx";
 
 export const MainContainer = styled.div`
-  display: flex;
+  display: grid;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
     position: relative;
-    top: 60px;
+margin-top: -50px; 
 `;
-export const CommentsContainer = styled.div`
+export const ContentContainer = styled.div`
 
-      width: 587px;
+    width: 587px;
   height: 148px;
     display: grid;
   align-items: center;
   justify-content: center;
   margin-top: auto;
   margin-bottom: auto;
+    font-family: Roboto;
+font-size: 16px;
+font-weight: 300;
+line-height: 18.75px;
+text-align: justified;
+
 
 `
-export const TopContainer = styled.div`
+export const TopMiddleContainer = styled.div`
     display: grid;
-  justify-content: center;
-  align-items: start;
+margin-top: -190px;
+  top: 0px;
   width: 100%;
-  //position: absolute;
-color: green;
+    position: absolute;
+      justify-content: center;
+    align-items: flex-start;
+
       padding: 10px; /* For spacing */
   z-index: 10; /* Ensure it's on top */
+    font-family: Roboto;
+font-size: 18px;
+font-weight: 300;
+line-height: 21.09px;
+text-align: center;
+color: white;
 
 `
 
@@ -45,10 +59,11 @@ export const ProfileLeftContainer = styled.div`
   margin-left: 68px;
   position: absolute;
   left: 0;
-    top: 60px;
+    top: 0;
+    `
   //  border-bottom: 1px solid #979797;
   //  padding-bottom: 10px;
-  //}`
+
 
     
 export const Paragraph = styled.p`
@@ -58,7 +73,13 @@ export const Paragraph = styled.p`
 export const RightContainer = styled.div`
   position: absolute;
   right: 0;
-    top: 200px;
+    top: 100px;
+    font-family: Roboto;
+font-size: 20px;
+font-weight: 300;
+line-height: 23.44px;
+text-align: left;
+
 `
 
 export const SelectionContainer = styled.div`
@@ -68,3 +89,6 @@ border-bottom: 2px solid grey;
 export const EditContainer = styled.div`
     
     `
+export const GreyBackground = styled.div`
+background-color: grey;
+`

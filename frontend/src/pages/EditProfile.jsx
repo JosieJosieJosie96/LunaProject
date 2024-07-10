@@ -24,7 +24,7 @@ function EditProfile() {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get('https://your-api-endpoint.com/user/profile');
+        const response = await axios.get('http://localhost:8000/backend/api/users/me/');
         setFormData({
           username: response.data.username,
           firstName: response.data.firstName,
@@ -54,7 +54,7 @@ function EditProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.patch('https://your-api-endpoint.com/user/profile', formData);
+      const response = await axios.patch("http://localhost:8000/backend/api/users/me/", formData);
       console.log('Profile updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating profile:', error);
