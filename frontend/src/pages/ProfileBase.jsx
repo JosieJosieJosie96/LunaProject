@@ -6,7 +6,7 @@ import {
   TopMiddleContainer,
   Paragraph,
   SelectionContainer,
-    GreyBackground,
+
 } from "../components/Profile.styled.js";
 import HeaderProfile from "../components/HeaderProfile.jsx";
 import ProfileComments from './ProfileComments';
@@ -48,19 +48,19 @@ function ProfileBase() {
           {/*<h3>{userdata.name}'s profile</h3>*/}
           <SelectionContainer onClick={() => setCurrentSection('reviews')}>
             <h3>Reviews</h3>
-            <img src={"../assets/svg/star.svg"} alt={"reviews"} />
+            <img src={"frontend/src/assets/svg/star.svg"} alt={"reviews"} />
           </SelectionContainer>
           <SelectionContainer onClick={() => setCurrentSection('comments')}>
             <h3>Comments</h3>
-            <img src={"../assets/svg/comment.svg"} alt={"comment"} />
+            <img src={"frontend/src/assets/svg/comment.svg"} alt={"comment"} />
           </SelectionContainer>
           <SelectionContainer onClick={() => setCurrentSection('restaurants')}>
             <h3>Restaurants</h3>
-            <img src={"../assets/svg/restaurant.svg"} alt={'restaurant'} />
+            <img src={"frontend/src/assets/svg/restaurant.svg"} alt={'restaurant'} />
           </SelectionContainer>
           <SelectionContainer onClick={() => setCurrentSection('editProfile')}>
             <h3>Edit Profile</h3>
-            <img src={"../assets/svg/restaurant.svg"} alt={'edit'} />
+            <img src={"frontend/src/assets/svg/edit.svg"} alt={'edit'} />
           </SelectionContainer>
         </ProfileLeftContainer>
 
