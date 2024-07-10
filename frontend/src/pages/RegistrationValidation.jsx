@@ -2,9 +2,12 @@ import { useForm } from 'react-hook-form';
 import { HeadingForm } from '../../ui/HeadingForm';
 import Input from '../components/Input';
 import { StyledContainer, SytledContainerForm } from './Login';
+import { BeatLoader } from 'react-spinners';
 
 import styled from 'styled-components';
 import { Button } from '../../ui/Button';
+import axios from 'axios';
+import { useState } from 'react';
 
 const StyledForm = styled.form`
   display: grid;
@@ -14,85 +17,115 @@ const StyledForm = styled.form`
 `;
 
 function RegistrationValidation() {
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function registrationValidate(obj) {
+    setIsLoading(true);
+
+    try {
+      const res = await axios.post(
+        `http://localhost:8000/backend/api/registration/validation/`,
+        obj,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+    setIsLoading(false);
+  }
+
+  function onSubmit(data) {
+    registrationValidate(data);
+  }
   return (
     <StyledContainer>
       <SytledContainerForm>
         <div>
           <HeadingForm>REGISTRATION</HeadingForm>
         </div>
-        <StyledForm>
-          <Input
-            htmlFor="email"
-            type="text"
-            register={register}
-            name="email"
-            isRequired={true}
-          >
-            EMAIL
-          </Input>
+        {isLoading ? (
+          <BeatLoader />
+        ) : (
+          <StyledForm onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              htmlFor="email"
+              type="text"
+              register={register}
+              name="email"
+              isRequired={true}
+            >
+              EMAIL
+            </Input>
 
-          <Input htmlFor="code" type="text" register={register} name="code">
-            CODE
-          </Input>
-          <Input
-            htmlFor="username"
-            type="text"
-            register={register}
-            name="username"
-          >
-            USERNAME
-          </Input>
-          <Input
-            htmlFor="location"
-            type="text"
-            register={register}
-            name="location"
-          >
-            LOCATION
-          </Input>
-          <Input
-            htmlFor="password"
-            type="password"
-            register={register}
-            name="password"
-          >
-            PASSWORD
-          </Input>
-          <Input
-            htmlFor="password_repeat"
-            type="password"
-            register={register}
-            name="password_repeat"
-          >
-            REPEAT PASSWORD
-          </Input>
-          <Input
-            htmlFor="first_name"
-            type="text"
-            register={register}
-            name="first_name"
-          >
-            FIRST NAME
-          </Input>
-          <Input
-            htmlFor="last_name"
-            type="text"
-            register={register}
-            name="last_name"
-          >
-            LAST NAME
-          </Input>
-          <Button
-            style={{
-              placeSelf: 'center',
-              columnSpan: 2,
-              justifySelf: 'center',
-            }}
-          >
-            Finish Registration
-          </Button>
-        </StyledForm>
+            <Input htmlFor="code" type="text" register={register} name="code">
+              CODE
+            </Input>
+            <Input
+              htmlFor="username"
+              type="text"
+              register={register}
+              name="username"
+            >
+              USERNAME
+            </Input>
+            <Input
+              htmlFor="location"
+              type="text"
+              register={register}
+              name="location"
+            >
+              LOCATION
+            </Input>
+            <Input
+              htmlFor="password"
+              type="password"
+              register={register}
+              name="password"
+            >
+              PASSWORD
+            </Input>
+            <Input
+              htmlFor="password_repeat"
+              type="password"
+              register={register}
+              name="password_repeat"
+            >
+              REPEAT PASSWORD
+            </Input>
+            <Input
+              htmlFor="first_name"
+              type="text"
+              register={register}
+              name="first_name"
+            >
+              FIRST NAME
+            </Input>
+            <Input
+              htmlFor="last_name"
+              type="text"
+              register={register}
+              name="last_name"
+            >
+              LAST NAME
+            </Input>
+            <Button
+              style={{
+                placeSelf: 'center',
+                columnSpan: 2,
+                justifySelf: 'center',
+              }}
+            >
+              Finish Registration
+            </Button>
+          </StyledForm>
+        )}
       </SytledContainerForm>
     </StyledContainer>
   );
