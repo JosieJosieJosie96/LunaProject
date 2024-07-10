@@ -14,6 +14,7 @@ import { Toaster } from 'react-hot-toast';
 import ForgotPassword from './pages/ForgotPassword';
 import NewPassword from './pages/NewPassword';
 import GlobalStyle from '../GlobalStyles';
+import WriteReview from "./pages/WriteReview.jsx";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="/newPassword" element={<NewPassword />} />
+              <Route path="/writeReview" element={<WriteReview />} />
             <Route
               path="/registrationValidation"
               element={<RegistrationValidation />}
