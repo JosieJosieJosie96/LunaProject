@@ -9,13 +9,14 @@ export const HeroContainer = styled.div`
   background-image: linear-gradient(black, black);
   padding: 96px 0;
   width: 100%;
+  height: 13%;
   margin-bottom: 40px;
 `;
 
 export const HeroImage = styled.img`
   position: absolute;
   inset: 0px;
-  z-index: 5;
+  z-index: -10;
   height: 100%;
   width: 100%;
   object-fit: cover;
