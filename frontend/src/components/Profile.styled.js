@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import {ProfileLeftContainer} from "../pages/Profile.jsx";
+// import {ProfileLeftContainer} from "../pages/ProfileComments.jsx";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -62,7 +62,7 @@ export const RightContainer = styled.div`
 `
 
 export const SelectionContainer = styled.div`
-border: 2px solid black;
+border-bottom: 2px solid grey;
     
 `
 export const EditContainer = styled.div`

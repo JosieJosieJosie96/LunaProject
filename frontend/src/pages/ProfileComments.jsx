@@ -19,7 +19,7 @@ import {
 
 
 
-function Profile() {
+function ProfileComments() {
   // const { profileId } = useParams()
   // const params = useParams()
   // const endpointToFetch = profileId ? `users/${profileId}/` : 'users/me/'
@@ -42,29 +42,30 @@ function Profile() {
 
         <ProfileLeftContainer>
             <div className={'profileimage'}>
-                <img src={'path/to/profile-image.jpg'} alt="Profile"/>
+                <img src={'path/to/profile-image.jpg'} alt="ProfileComments"/>
             </div>
-
+{/*<h3>{userdata.name}'s profile</h3>*/}
             <SelectionContainer>
                 <h3>Reviews</h3>
-
+<img src={"../assets/svg/star.svg"} alt={"reviews"}/>
             </SelectionContainer>
             <SelectionContainer>
                 <h3>Comments</h3>
+                <img src={"../assets/svg/comment.svg"} alt={"comment"}/>
             </SelectionContainer>
             <SelectionContainer>
                 <h3>Restaurants</h3>
-
+                <img src={"../assets/svg/restaurant.svg"} alt={'restaurant'}/>
             </SelectionContainer>
             <SelectionContainer>
                 <h3>Edit Profile</h3>
-
+                <img src={"../assets/svg/restaurant.svg"} alt={'edit'}/>
             </SelectionContainer>
 
 
         </ProfileLeftContainer>
-        <TopContainer>
-            <div className={'name'}>
+    <TopContainer>
+    <div className={'name'}>
                 <Paragraph>name</Paragraph>
                 {/*<p>{userdata.name}</p>*/}
             </div>
@@ -135,4 +136,4 @@ function Profile() {
 }
 
 
-export default Profile;
+export default ProfileComments;

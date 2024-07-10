@@ -1,118 +1,50 @@
 import {
 
-    MainContainer,
-    ProfileLeftContainer,
-    RightContainer,
-    TopContainer,
-    Paragraph, SelectionContainer, EditContainer
+
+    Paragraph, EditContainer
 } from "../components/Profile.styled.js";
+import Input from "../components/Input.jsx";
+import {Button} from "../../ui/Button.jsx";
 
 
 
 
-function Profile() {
-  // const { profileId } = useParams()
-  // const params = useParams()
-  // const endpointToFetch = profileId ? `users/${profileId}/` : 'users/me/'
-  // const { data, error } = useAutoFetch('get', endpointToFetch, '', params)
-  // const dispatch = useDispatch()
-
-// useEffect(() => {
-//   dispatch(setProfileFilter('posts'));
-// }, [dispatch]);
+function EditProfile() {
 
 
-  return (
-    <>
-      {/*{data && (*/}
-        <>
-<MainContainer>
-          <div className={'banner-image'}>
-          <img src={'path/to/profile-image.jpg'} alt="banner"/>
-        </div>
+    <EditContainer>
+        <form>
+            <Paragraph>Username</Paragraph>
+            <Input htmlFor="username" type="text" /*register={register}*/ name="username">
+<Paragraph>First Name</Paragraph>
+            <Input htmlFor="first-name" type="text" /*register={register}*/ name="first-name">
 
-        <ProfileLeftContainer>
-            <div className={'profileimage'}>
-                <img src={'path/to/profile-image.jpg'} alt="Profile"/>
+            </Input>
+                <Paragraph>Last Name</Paragraph>
+            <Input htmlFor="last-name" type="text" /*register={register}*/ name="last-name">
+
+            </Input>
+            </Input>
+            <Paragraph>Location</Paragraph>
+            <Input htmlFor="location" type="text" /*register={register}*/ name="location">
+            </Input>
+<Paragraph>Phone</Paragraph>
+            <Input htmlFor="phone" type="text" /*register={register}*/ name="phone">
+            </Input>
+            <Paragraph>Things I love</Paragraph>
+            <Input htmlFor="ThingsIlove" type="text" /*register={register}*/ name="ThingsIlove">
+            </Input>
+            <Paragraph>Description</Paragraph>
+            <Input htmlFor="description" type="text" /*register={register}*/ name="description">
+            </Input>
+
+
+            <div>
+                <Button>Save</Button>
             </div>
-
-            <SelectionContainer>
-                <h3>Reviews</h3>
-
-            </SelectionContainer>
-            <SelectionContainer>
-                <h3>Comments</h3>
-            </SelectionContainer>
-            <SelectionContainer>
-                <h3>Restaurants</h3>
-
-            </SelectionContainer>
-            <SelectionContainer>
-                <h3>Edit Profile</h3>
-
-            </SelectionContainer>
-
-
-        </ProfileLeftContainer>
-        <TopContainer>
-            <div className={'name'}>
-                <Paragraph>name</Paragraph>
-                {/*<p>{userdata.name}</p>*/}
-            </div>
-            <div className={'location'}>
-                <p>location</p>
-                {/*<p>{userdata.location}</p>*/}
-            </div>
-            <div className={'reviews'}>
-                <p>reviews</p>
-                {/*<p>{userdata.reviews}</p>*/}
-            </div>
-            <div className={'comments'}>
-                <p>comments</p>
-                {/*<p>{userdata.comments}</p>*/}
-            </div>
-
-
-        </TopContainer>
-
-<EditContainer>
-
-</EditContainer>
-
-        <RightContainer>
-            {/*<h3>About {userdata.name}</h3>*/}
-            <div className={'location2'}>
-                <h3>Location</h3>
-                {/*<p>{userdata.location}</p>*/}
-            </div>
-            <div className={'review 1'}>
-                <h3>Luna member since</h3>
-                {/*<p>{userdata.created}</p>*/}
-            </div>
-            <div className={'things I love'}>
-                <h3>Things I love</h3>
-                {/*<p>{userdata.likes}</p>*/}
-            </div>
-            <div className={'description'}>
-                <h3>Description</h3>
-                {/*<p>{userdata.description}</p>*/}
-            </div>
-
-        </RightContainer>
-
-</MainContainer>
+        </form>
+    </EditContainer>}
 
 
 
-
-
-
-    </>
-        )
-        {/*{error && <Header error />}*/}
-    </>
-  )
-}
-
-
-export default Profile;
+export default EditProfile;
