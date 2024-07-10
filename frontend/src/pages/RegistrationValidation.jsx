@@ -55,7 +55,7 @@ function RegistrationValidation() {
   return (
     <>
       {isSuccess ? (
-        navigate('login', {
+        navigate('/login', {
           replace: true,
         })
       ) : (
