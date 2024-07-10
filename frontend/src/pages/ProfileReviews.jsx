@@ -1,9 +1,9 @@
-import {CommentsContainer} from "../components/Profile.styled.js";
+import {ContentContainer} from "../components/Profile.styled.js";
 
 function ProfileReviews() {
     return(
     <>
-<CommentsContainer>
+<ContentContainer>
             <div className={'comments'}>
                 <h3>Reviews</h3>
             </div>
@@ -16,7 +16,7 @@ function ProfileReviews() {
                 {/*<p>{userdata.comments}</p>*/}
             </div>
 
-        </CommentsContainer>
+        </ContentContainer>
         </>
         )}
 export default ProfileReviews

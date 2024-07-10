@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import {
   MainContainer,
   ProfileLeftContainer,
   RightContainer,
-  TopContainer,
+  TopMiddleContainer,
   Paragraph,
   SelectionContainer,
+    GreyBackground,
 } from "../components/Profile.styled.js";
 import HeaderProfile from "../components/HeaderProfile.jsx";
 import ProfileComments from './ProfileComments';
@@ -13,8 +14,11 @@ import ProfileReviews from './ProfileReviews';
 import ProfileRestaurants from './ProfileRestaurants';
 import EditProfile from './EditProfile';
 
+
+
+
 function ProfileBase() {
-  const [currentSection, setCurrentSection] = useState('comments');
+  const [currentSection, setCurrentSection] = useState('editProfile');
 
   const renderSection = () => {
     switch (currentSection) {
@@ -33,27 +37,9 @@ function ProfileBase() {
 
   return (
     <>
-      <MainContainer>
-        <HeaderProfile>
-          <TopContainer>
-            <div className={'name'}>
-              <Paragraph>name</Paragraph>
-              {/*<p>{userdata.name}</p>*/}
-            </div>
-            <div className={'location'}>
-              <p>location</p>
-              {/*<p>{userdata.location}</p>*/}
-            </div>
-            <div className={'reviews'}>
-              <p>reviews</p>
-              {/*<p>{userdata.reviews}</p>*/}
-            </div>
-            <div className={'comments'}>
-              <p>comments</p>
-              {/*<p>{userdata.comments}</p>*/}
-            </div>
-          </TopContainer>
+      <HeaderProfile>
         </HeaderProfile>
+      <MainContainer>
 
         <ProfileLeftContainer>
           <div className={'profileimage'}>
@@ -78,6 +64,9 @@ function ProfileBase() {
           </SelectionContainer>
         </ProfileLeftContainer>
 
+
+
+
         <div>
           {renderSection()}
         </div>
@@ -101,6 +90,25 @@ function ProfileBase() {
             {/*<p>{userdata.description}</p>*/}
           </div>
         </RightContainer>
+
+                 <TopMiddleContainer>
+            <div className={'name'}>
+              <Paragraph>name</Paragraph>
+              {/*<p>{userdata.name}</p>*/}
+            </div>
+            <div className={'location'}>
+              <p>location</p>
+              {/*<p>{userdata.location}</p>*/}
+            </div>
+            <div className={'reviews'}>
+              <p>reviews</p>
+              {/*<p>{userdata.reviews}</p>*/}
+            </div>
+            <div className={'comments'}>
+              <p>comments</p>
+              {/*<p>{userdata.comments}</p>*/}
+            </div>
+          </TopMiddleContainer>
       </MainContainer>
     </>
   );
