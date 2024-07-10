@@ -14,6 +14,7 @@ class RestaurantCreateSerializer(serializers.ModelSerializer):
 
 class RestaurantGetSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+
     class Meta:
         model = Restaurant
         fields = '__all__'

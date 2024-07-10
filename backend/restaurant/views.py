@@ -29,6 +29,7 @@ class RestaurantCreateView(GenericAPIView):
         serializer.save(user=request.user)
         return Response(serializer.data)
 
+
 class RestaurantCategoryView(GenericAPIView):
     serializer_class = RestaurantGetSerializer
     permission_classes = []
@@ -40,11 +41,11 @@ class RestaurantCategoryView(GenericAPIView):
             return queryset.filter(category=filter_option)
         return queryset
 
-
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
 
 class RestaurantUserView(GenericAPIView):
     pass
