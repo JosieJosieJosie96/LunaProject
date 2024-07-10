@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../../ui/Button';
-import LogoImg from '../../ui/LogoImg';
+import LogoImg from '../assets/svg/logo.svg';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -22,7 +22,7 @@ function Header() {
   return (
     <StyledHeader>
       <div>
-        <img src="luna-project-assets/logo.svg" alt="logo" />
+        <img src={LogoImg} alt="logo" />
       </div>
       <DivNav>
         <NavLink to="/">Home</NavLink>
