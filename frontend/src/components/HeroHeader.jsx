@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '../../ui/Button';
 
-const HeroContainer = styled.div`
+export const HeroContainer = styled.div`
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -12,7 +12,7 @@ const HeroContainer = styled.div`
   margin-bottom: 40px;
 `;
 
-const HeroImage = styled.img`
+export const HeroImage = styled.img`
   position: absolute;
   inset: 0px;
   z-index: -10;
@@ -23,7 +23,7 @@ const HeroImage = styled.img`
   opacity: 0.6;
 `;
 
-const ContainerAll = styled.div`
+export const ContainerAll = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 1280px;
