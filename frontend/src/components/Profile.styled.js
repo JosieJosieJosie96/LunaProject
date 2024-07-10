@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import {ProfileLeftContainer} from "../pages/ProfileComments.jsx";
+// import {ProfileLeftContainer} from "../pages/ProfileBase.jsx";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ export const TopContainer = styled.div`
   align-items: start;
   width: 100%;
   //position: absolute;
-
+color: green;
       padding: 10px; /* For spacing */
   z-index: 10; /* Ensure it's on top */
 
@@ -58,7 +58,7 @@ export const Paragraph = styled.p`
 export const RightContainer = styled.div`
   position: absolute;
   right: 0;
-    top: 60px;
+    top: 200px;
 `
 
 export const SelectionContainer = styled.div`
