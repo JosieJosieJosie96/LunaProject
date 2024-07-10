@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 
 from restaurant.models import Restaurant
+from user.serializers import UserSerializer
 
 
 class RestaurantCreateSerializer(serializers.ModelSerializer):
@@ -12,7 +13,8 @@ class RestaurantCreateSerializer(serializers.ModelSerializer):
 
 
 class RestaurantGetSerializer(serializers.ModelSerializer):
-    # user = UserSerializer()
+    user = UserSerializer()
+
     class Meta:
         model = Restaurant
-        fields = ['id', 'name', 'address', 'city', 'state', 'zipcode', 'user']
+        fields = '__all__'

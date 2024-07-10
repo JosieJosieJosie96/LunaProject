@@ -19,7 +19,7 @@ from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
 from registration.views import RegistrationView, RegistrationValidationView
-from restaurant.views import RestaurantCreateView, RestaurantGetView
+from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView
 
 urlpatterns = [
     path('backend/admin/', admin.site.urls),
@@ -30,6 +30,7 @@ urlpatterns = [
     path('backend/api/registration/validation/', RegistrationValidationView.as_view(), name='registration_validation'),
     path('backend/api/restaurants/new/', RestaurantCreateView.as_view(), name='restaurant_create'),
     path('backend/api/restaurants/', RestaurantGetView.as_view(), name='restaurant_get'),
+    path('backend/api/restaurants/category/<str:category>/', RestaurantCategoryView.as_view(), name='restaurant_category'),
     # user views
     path('backend/api/users/', include('user.urls')),
 

@@ -6,12 +6,17 @@ import { StyledContainer, SytledContainerForm } from './Login';
 import axios from 'axios';
 import { useState } from 'react';
 import { BeatLoader } from 'react-spinners';
+import SuccessRegistration from '../components/SuccessRegistration.jsx';
 
 function SignUp() {
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit } = useForm();
   async function signup(obj) {
     setIsLoading(true);
+    setErrorMessage('');
+
     try {
       const res = await axios.post(
         `http://localhost:8000/backend/api/registration/`,
@@ -23,11 +28,15 @@ function SignUp() {
         },
       );
 
+      setIsSuccess(true);
+      setIsLoading(false);
+
       return res.data;
     } catch (error) {
-      console.log(error);
+      setIsSuccess(false);
+      setErrorMessage(error.response.data.email);
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   function onSubmit(data) {
@@ -35,30 +44,43 @@ function SignUp() {
   }
 
   return (
-    <StyledContainer>
-      <SytledContainerForm>
-        <div>
-          <HeadingForm>SIGN UP</HeadingForm>
-        </div>
-        {isLoading && <BeatLoader />}
-        <div style={{ marginTop: '40px' }}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              htmlFor="email"
-              type="email"
-              register={register}
-              name="email"
-            >
-              Email Address
-            </Input>
-
+    <>
+      {isSuccess ? (
+        <SuccessRegistration />
+      ) : (
+        <StyledContainer>
+          <SytledContainerForm>
             <div>
-              <Button>SIGN UP </Button>
+              <HeadingForm>SIGN UP</HeadingForm>
             </div>
-          </form>
-        </div>
-      </SytledContainerForm>
-    </StyledContainer>
+
+            {isLoading ? (
+              <BeatLoader />
+            ) : (
+              <div style={{ marginTop: '40px' }}>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <Input
+                    htmlFor="email"
+                    type="email"
+                    register={register}
+                    name="email"
+                  >
+                    Email Address
+                  </Input>
+                  {errorMessage ? (
+                    <p style={{ color: 'red' }}>{errorMessage}</p>
+                  ) : null}
+
+                  <div>
+                    <Button>SIGN UP </Button>
+                  </div>
+                </form>
+              </div>
+            )}
+          </SytledContainerForm>
+        </StyledContainer>
+      )}
+    </>
   );
 }
 

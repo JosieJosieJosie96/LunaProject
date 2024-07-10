@@ -1,6 +1,7 @@
 from random import randint
 
 from django.core.mail import send_mail
+from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
@@ -34,5 +35,6 @@ class RegistrationValidationView(GenericAPIView):
 
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
-
-        return Response(serializer.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(serializer.validated_data)
+        return Response(status=status.HTTP_201_CREATED)

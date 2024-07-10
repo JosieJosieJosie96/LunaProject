@@ -54,9 +54,8 @@ function NewPassword() {
 
           <Button
             style={{
+              gridColumn: 'span 2',
               placeSelf: 'center',
-              columnSpan: 2,
-              justifySelf: 'center',
             }}
           >
             Set New Password

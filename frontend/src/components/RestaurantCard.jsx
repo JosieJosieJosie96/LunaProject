@@ -1,3 +1,5 @@
+// import axios from 'axios';
+// import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export const Card = styled.div`
@@ -31,6 +33,33 @@ const ImageContainer = styled.div`
 `;
 
 function RestaurantCard() {
+  // const [isSuccess, setIsSuccess] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
+  // const [isLoading, setIsLoading] = useState(false);
+  // async function getRestaurants() {
+  //   setIsLoading(true);
+  //   setErrorMessage('');
+
+  //   try {
+  //     const res = await axios.get(
+  //       `http://localhost:8000/backend/api/restaurants/`,
+  //     );
+
+  //     setIsSuccess(true);
+  //     setIsLoading(false);
+
+  //     return res.data;
+  //   } catch (error) {
+  //     setErrorMessage(error.response.data.email);
+  //     setIsSuccess(false);
+  //     setIsLoading(false);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getRestaurants();
+  // }, []);
+
   return (
     <div>
       <Container>
