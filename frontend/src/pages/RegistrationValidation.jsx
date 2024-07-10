@@ -45,7 +45,7 @@ function RegistrationValidation() {
     } catch (error) {
       setErrorMessage(error.response.data);
       setIsLoading(false);
-      // console.log(error);
+      console.log(error);
     }
   }
 
@@ -55,7 +55,9 @@ function RegistrationValidation() {
   return (
     <>
       {isSuccess ? (
-        navigate('login')
+        navigate('/login', {
+          replace: true,
+        })
       ) : (
         <StyledContainer>
           <SytledContainerForm>

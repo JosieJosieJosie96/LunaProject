@@ -1,7 +1,7 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../../ui/Button';
-import LogoImg from '../../ui/LogoImg';
+import LogoImg from '../assets/svg/logo.svg';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -19,25 +19,48 @@ const DivNav = styled.div`
 `;
 
 function Header() {
+  const navigate = useNavigate();
+
+  const token = window.localStorage.getItem('token');
+
+  function handleLogout() {
+    window.localStorage.clear();
+
+    navigate('/login');
+  }
   return (
     <StyledHeader>
       <div>
-        <img src="luna-project-assets/logo.svg" alt="logo" />
+        <img src={LogoImg} alt="logo" />
       </div>
       <DivNav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/search">Search</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
+        <button
+          style={{
+            border: 'none',
+            backgroundColor: 'inherit',
+            fontSize: '20px',
+          }}
+          onClick={() => {
+            if (!token) return navigate('login');
+          }}
+        >
+          <NavLink to="/profile">Profile</NavLink>
+        </button>
         <div>
-          <Link to="/login">
-            <Button>Login</Button>
-          </Link>
-          <Link to="/signup">
-            <Button>Sign up</Button>
-          </Link>
-          <Link to="/login">
-            <Button>Logout</Button>
-          </Link>
+          {!token && (
+            <>
+              <Link to="/login">
+                <Button>Login</Button>
+              </Link>
+              <Link to="/signup">
+                <Button>Sign up</Button>
+              </Link>
+            </>
+          )}
+
+          {token && <Button onClick={() => handleLogout()}>Logout</Button>}
         </div>
       </DivNav>
     </StyledHeader>

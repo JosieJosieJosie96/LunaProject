@@ -44,17 +44,15 @@ function CreateRestaurant() {
         <HeadingForm>CREATE NEW RESTAURANT</HeadingForm>
 
         <FormStyled>
-          <div className="w-full place-self-end justify-self-start">
+          <div>
             <Input htmlFor="name" type="text" register={register} name="name">
               Name *
             </Input>
           </div>
 
-          <LabelDiv className="w-full place-self-start justify-self-center">
-            <LabelSelectStyled className="block text-sm font-medium leading-6 text-gray-900">
-              Category *
-            </LabelSelectStyled>
-            <div style={{ marginTop: '10px' }} className="mt-2">
+          <LabelDiv>
+            <LabelSelectStyled>Category *</LabelSelectStyled>
+            <div style={{ marginTop: '10px' }}>
               <select
                 {...register('category', {
                   required: true,
@@ -119,14 +117,9 @@ function CreateRestaurant() {
             Price level
           </Input>
           <div>
-            <label className="block text-sm font-medium leading-6 text-gray-900">
-              Image
-            </label>
-            <div className="mt-2 w-36">
-              <InputFileStyled
-                type="file"
-                className="block w-fit text-sm file:mr-4 file:rounded-md file:border-0 file:bg-amber-500 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:cursor-pointer hover:file:bg-amber-600"
-              />
+            <label>Image</label>
+            <div>
+              <InputFileStyled type="file" />
             </div>
           </div>
           <Button

@@ -26,8 +26,9 @@ const CommentsContainer = styled.div`
 const CommentsCard = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 12px;
   gap: 12px;
-  border-top: 2px solid white;
+  border-top: 2px solid rgba(0, 0, 0, 0.105);
   p {
     margin: 0;
     color: orange;
@@ -42,7 +43,11 @@ const CommentsCard = styled.div`
 function RestaurantPageReviewCard({ setIsClicked, isClicked }) {
   return (
     <div
-      style={{ width: '100%', marginTop: '30px', border: '1px solid black' }}
+      style={{
+        width: '100%',
+        marginTop: '30px',
+        border: '1px solid #00000025',
+      }}
     >
       <div
         style={{
@@ -85,7 +90,7 @@ function RestaurantPageReviewCard({ setIsClicked, isClicked }) {
         <p style={{ paddingRight: '30px' }}>DATE</p>
       </div>
       <div style={{ padding: '8px 8px' }}>
-        <p className="mb-2">
+        <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
           totam obcaecati doloremque ipsam. Iusto quisquam dolores, explicabo
           sed soluta nostrum dolor ratione omnis corrupti ea!
@@ -96,24 +101,32 @@ function RestaurantPageReviewCard({ setIsClicked, isClicked }) {
             alignItems: 'center',
             justifyContent: 'space-between',
           }}
-          className="flex items-center justify-between"
         >
           {isClicked ? (
-            <div style={{ display: 'flex', width: '70%' }}>
-              <Input type="text" placeholder="Hide comments" />
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '100%',
+                gap: '10px',
+                marginBottom: '12px',
+              }}
+            >
+              <Input
+                style={{ border: '1px solid gray' }}
+                type="text"
+                placeholder="Hide comments"
+              />
               <Button>POST</Button>
             </div>
           ) : (
             <div style={{ display: 'flex' }}>
-              <ButtonStyled
-                style={{ marginRight: '2px' }}
-                className="flex items-center gap-2 rounded-l-lg border-r-2 border-r-white bg-slate-400 px-3 py-0.5 text-white hover:bg-slate-500"
-              >
+              <ButtonStyled style={{ marginRight: '2px' }}>
                 <img src="src/assets/svg/money.svg" />
                 <p>Total Likes Likes</p>
               </ButtonStyled>
 
-              <ButtonStyled className="flex items-center gap-2 rounded-r-lg bg-slate-400 px-3 py-0.5 text-white hover:bg-slate-500">
+              <ButtonStyled>
                 <p>Comments Total comments</p>
               </ButtonStyled>
             </div>
@@ -137,11 +150,11 @@ function RestaurantPageReviewCard({ setIsClicked, isClicked }) {
           <>
             <CommentsContainer>
               <CommentsCard>
-                <p className="text-amber-500">Cristiano Ronaldo</p>
+                <p>Cristiano Ronaldo</p>
                 <span>I love it</span>
               </CommentsCard>
               <CommentsCard>
-                <p className="text-amber-500">Cristiano Ronaldo</p>
+                <p>Cristiano Ronaldo</p>
                 <span>I love it</span>
               </CommentsCard>
             </CommentsContainer>

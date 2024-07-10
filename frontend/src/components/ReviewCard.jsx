@@ -58,7 +58,7 @@ function ReviewCard() {
                 </div>
               </div>
             </div>
-            <div style={{ paddingTop: '8px' }} className="p-2">
+            <div style={{ paddingTop: '8px' }}>
               <p style={{ marginTop: '4px', color: 'orange' }}>
                 %RESTAURANT NAME %
               </p>

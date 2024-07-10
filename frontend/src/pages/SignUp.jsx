@@ -33,6 +33,7 @@ function SignUp() {
 
       return res.data;
     } catch (error) {
+      console.log(error);
       setIsSuccess(false);
       setErrorMessage(error.response.data.email);
       setIsLoading(false);

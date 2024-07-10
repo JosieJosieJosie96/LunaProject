@@ -1,5 +1,5 @@
-// import axios from 'axios';
-// import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export const Card = styled.div`
@@ -10,15 +10,11 @@ export const Card = styled.div`
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
   min-width: 300px;
   max-width: 300px;
+  background-color: white;
 `;
 
 export const Container = styled.div`
-  /* margin-left: auto;
-  margin-right: auto; */
-  width: 100&;
-
-  /* padding-left: 12px;
-  padding-right: 12px; */
+  width: 100%;
 `;
 
 const Image = styled.img`
@@ -33,32 +29,33 @@ const ImageContainer = styled.div`
 `;
 
 function RestaurantCard() {
-  // const [isSuccess, setIsSuccess] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState('');
-  // const [isLoading, setIsLoading] = useState(false);
-  // async function getRestaurants() {
-  //   setIsLoading(true);
-  //   setErrorMessage('');
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  async function getRestaurants() {
+    setIsLoading(true);
+    setErrorMessage('');
 
-  //   try {
-  //     const res = await axios.get(
-  //       `http://localhost:8000/backend/api/restaurants/`,
-  //     );
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/backend/api/restaurants/`,
+      );
 
-  //     setIsSuccess(true);
-  //     setIsLoading(false);
+      setIsSuccess(true);
+      setIsLoading(false);
 
-  //     return res.data;
-  //   } catch (error) {
-  //     setErrorMessage(error.response.data.email);
-  //     setIsSuccess(false);
-  //     setIsLoading(false);
-  //   }
-  // }
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response.data.email);
+      setIsSuccess(false);
+      setIsLoading(false);
+    }
+  }
 
-  // useEffect(() => {
-  //   getRestaurants();
-  // }, []);
+  useEffect(() => {
+    getRestaurants();
+  }, []);
 
   return (
     <div>
