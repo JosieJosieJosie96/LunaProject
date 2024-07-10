@@ -10,10 +10,10 @@ def get_image_upload_path(instance, filename):
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=20,
-                              choices=(('Asian', 'Asian'), ('Italian', 'Italian'),
-                                       ('Burger', 'Burger'), ('Arab', 'Arab'),
-                                       ('Mexican', 'Mexican')),
-                              default='none')
+                                choices=(('Asian', 'Asian'), ('Italian', 'Italian'),
+                                         ('Burger', 'Burger'), ('Arab', 'Arab'),
+                                         ('Mexican', 'Mexican')),
+                                default='none')
     country = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
