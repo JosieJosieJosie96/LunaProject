@@ -92,3 +92,14 @@ export const EditContainer = styled.div`
 export const GreyBackground = styled.div`
 background-color: grey;
 `
+export const LargeInput = styled.div`
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+      display: block;
+    border-radius: 6px;
+    font-size: 24px;
+  font-weight: 500;
+  color: #111827;
+  border: 1px solid #00000039;
+`

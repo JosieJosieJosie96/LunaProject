@@ -1,6 +1,7 @@
-
+import {Button} from "../../ui/Button.jsx";
 import { useForm } from 'react-hook-form';
-import Input from "../components/Input.jsx";
+
+import {LargeInput} from "../components/Profile.styled.js";
 
 function WriteReview() {
   const { register, handleSubmit } = useForm();
@@ -17,7 +18,7 @@ function WriteReview() {
 
       <div style={{ marginTop: '40px' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
+          <LargeInput
             htmlFor="review"
             type="text"
             register={register}
@@ -26,7 +27,7 @@ function WriteReview() {
 
             Please don't review this business if you received a freebie for writing this review, or if you're connected in any way to the owner or employees."
           />
-          <button type="submit">Submit</button>
+          <Button>Submit</Button>
         </form>
       </div>
     </>
