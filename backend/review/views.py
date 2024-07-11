@@ -171,8 +171,8 @@ class ReviewCommentUserView(GenericAPIView):
         reviews = Review.objects.all()
         filter_option = self.request.user
         if filter_option is not None:
-            comments_filtered=comments.filter(user=filter_option)
-            reviews_filtered=reviews.filter(id=comments_filtered)
+            comments_filtered = comments.filter(user=filter_option)
+            reviews_filtered = reviews.filter(id=comments_filtered)
         return reviews_filtered
 
     def get(self, request, *args, **kwargs):
