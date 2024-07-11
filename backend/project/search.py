@@ -11,7 +11,6 @@ from user.serializers import UserSerializer
 User = get_user_model()
 
 
-
 class SearchView(GenericAPIView):
 
     def get_serializer_class(self, *args, **kwargs):
