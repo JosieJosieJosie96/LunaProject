@@ -4,6 +4,7 @@ import {Fragment, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import styled from 'styled-components';
+import RatingReview from "./Star.jsx";
 
 export const Card = styled.div`
     border: 1px solid #EBEBEB;
@@ -91,3 +92,4 @@ function RestaurantCard({restaurants}) {
 }
 
 export default RestaurantCard;
+

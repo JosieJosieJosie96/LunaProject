@@ -10,9 +10,10 @@ const Image = styled.img`
     object-position: center;
 `;
 const ImageContainer = styled.div`
-    height: 94px;
-    width: 90px;
+    height: 70px;
+    width: 65px;
     overflow: hidden;
+    margin-right: 7px;
 `;
 
 function UserCard({users}) {
@@ -27,8 +28,7 @@ function UserCard({users}) {
                                     <div
                                         style={{
                                             display: 'flex',
-                                            borderBottom: '1px solid gray',
-                                            alignItems: 'center',
+                                            borderBottom: '1px solid #ebebeb',
                                             justifyContent: 'space-start',
                                         }}
                                     >
@@ -38,8 +38,13 @@ function UserCard({users}) {
                                         </ImageContainer>
 
                                         <div style={{marginLeft: '14px'}}>
-                                            <h3 style={{color: 'orange'}}>{user?.username}</h3>
-                                            <p>Total Reviews</p>
+                                            <h3 style={{
+                                                color: 'orange',
+                                                margin: '0',
+                                                marginTop: '10px',
+                                                marginBottom: '5px'
+                                            }}>{user?.username}</h3>
+                                            <p style={{margin: '0'}}>6 Reviews in total</p>
                                         </div>
                                     </div>
 

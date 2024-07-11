@@ -4,13 +4,14 @@ import { HeadingForm } from '../../ui/HeadingForm';
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-content: center;
-  justify-items: center;
-  /* column-gap: 12px; */
-  width: 83%;
-  margin-bottom: 8%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-content: center;
+    justify-items: center;
+    /* column-gap: 12px; */
+    width: 83%;
+    margin-bottom: 8%;
+    row-gap: 30px;
 `;
 
 function Home() {
