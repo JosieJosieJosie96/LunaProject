@@ -1,11 +1,17 @@
 from rest_framework import status
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from restaurant.models import Restaurant
 from review.models import Review
 from review.serializers import ReviewCreateSerializer, ReviewGetSerializer
+
+
+class ReviewGetAllView(ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewGetSerializer
+    permission_classes = []
 
 
 class ReviewCreateView(GenericAPIView):
