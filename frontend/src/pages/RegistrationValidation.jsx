@@ -22,6 +22,7 @@ function RegistrationValidation() {
   const { register, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   async function registrationValidate(obj) {
@@ -30,7 +31,7 @@ function RegistrationValidation() {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/backend/api/registration/validation/`,
+        `https://luna1.propulsion-learn.ch/backend/api/registration/validation/`,
         obj,
         {
           headers: {
@@ -40,12 +41,14 @@ function RegistrationValidation() {
       );
       setIsSuccess(true);
       setIsLoading(false);
+      setIsError(false);
 
       return res.data;
     } catch (error) {
-      setErrorMessage(error.response.data);
+      setErrorMessage(error.response.data.non_field_errors);
+      setIsSuccess(false);
+      setIsError(true);
       setIsLoading(false);
-      console.log(error);
     }
   }
 
@@ -140,6 +143,7 @@ function RegistrationValidation() {
                 >
                   LAST NAME *
                 </Input>
+                {isError && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
                 <Button
                   style={{

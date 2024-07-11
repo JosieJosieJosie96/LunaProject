@@ -1,6 +1,10 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import {Button, HeaderNavButtonLogin, HeaderNavButtonSignUp} from '../../ui/Button';
+import {
+  Button,
+  HeaderNavButtonLogin,
+  HeaderNavButtonSignUp,
+} from '../../ui/Button';
 import LogoImg from '../assets/svg/logo.svg';
 
 const StyledHeader = styled.header`
@@ -11,10 +15,10 @@ const StyledHeader = styled.header`
 `;
 
 const DivNav = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
 `;
 
 function Header() {
@@ -42,25 +46,24 @@ function Header() {
             fontSize: '20px',
           }}
           onClick={() => {
-            if (!token) return navigate('login');
+            if (!token) return navigate('/login');
           }}
         >
           <NavLink to="/profile">Profile</NavLink>
         </button>
-        <div>
-          {!token && (
-            <>
+        {token && <Button onClick={() => handleLogout()}>Logout</Button>}
+        {!token && (
+          <>
+            <div>
               <Link to="/login">
                 <HeaderNavButtonLogin>Login</HeaderNavButtonLogin>
               </Link>
               <Link to="/signup">
                 <HeaderNavButtonSignUp>Sign up</HeaderNavButtonSignUp>
               </Link>
-            </>
-          )}
-
-          {token && <Button onClick={() => handleLogout()}>Logout</Button>}
-        </div>
+            </div>
+          </>
+        )}
       </DivNav>
     </StyledHeader>
   );

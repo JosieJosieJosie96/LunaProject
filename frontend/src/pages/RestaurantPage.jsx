@@ -69,7 +69,10 @@ function RestaurantPage() {
         </HeroTextContainer>
       </HeroContainer>
       {isReviewButtonClicked ? (
-        <WriteReview setIsReviewButtonClicked={setIsReviewButtonClicked} />
+        <WriteReview
+          restaurantId={restaurantId}
+          setIsReviewButtonClicked={setIsReviewButtonClicked}
+        />
       ) : (
         <div style={{ display: 'flex', justifyContent: 'center', gap: '50px' }}>
           <div

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
-import { BarLoader } from 'react-spinners';
+import { BeatLoader } from 'react-spinners';
 
 const ContainerStyled = styled.div`
   display: flex;
@@ -47,16 +47,16 @@ function CreateRestaurant() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isError, setIsError] = useState(false);
 
   async function create(obj) {
     setIsLoading(true);
     setErrorMessage('');
-    setIsSuccess(true);
-    setIsLoading(false);
-    setErrorMessage('');
+    setIsSuccess(false);
+
     try {
       const res = await axios.post(
-        `http://localhost:8000/backend/api/restaurants/new/`,
+        `https://luna1.propulsion-learn.ch/backend/api/restaurants/new/`,
         obj,
         {
           headers: {
@@ -65,16 +65,17 @@ function CreateRestaurant() {
           },
         },
       );
-
+      setIsError(false);
       setIsSuccess(true);
       setIsLoading(false);
 
       return res.data;
     } catch (error) {
       console.log(error);
-      setErrorMessage(error.response.data);
-      setIsSuccess(false);
       setIsLoading(false);
+      setIsError(true);
+      setIsSuccess(false);
+      setErrorMessage(error.response.data);
     }
   }
 
@@ -90,7 +91,7 @@ function CreateRestaurant() {
         <ContainerStyled>
           <HeadingForm>CREATE NEW RESTAURANT</HeadingForm>
           {isLoading ? (
-            <BarLoader />
+            <BeatLoader />
           ) : (
             <FormStyled onSubmit={handleSubmit(onSubmit)}>
               <div>
@@ -218,6 +219,7 @@ function CreateRestaurant() {
                   />
                 </div>
               </div>
+              {isError && <p style={{ color: 'red' }}>{errorMessage}</p>}
               <Button
                 style={{ gridColumn: 'span 3 / span 3', placeSelf: 'center' }}
               >

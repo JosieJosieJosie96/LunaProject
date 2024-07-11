@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import { Card, Container } from './RestaurantCard';
+import { Fragment } from 'react';
 
 const Image = styled.img`
   width: 100%;
@@ -18,8 +19,8 @@ function UserCard({ users }) {
   return (
     <>
       {users?.map((user, index) => (
-        <>
-          <div key={index}>
+        <Fragment key={index}>
+          <div>
             <Container>
               <Card>
                 <div>
@@ -51,7 +52,7 @@ function UserCard({ users }) {
               </Card>
             </Container>
           </div>
-        </>
+        </Fragment>
       ))}
     </>
   );

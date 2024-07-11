@@ -31,17 +31,16 @@ function Login() {
   const { register, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   async function login(obj) {
     setIsLoading(true);
-    setErrorMessage('');
-    setIsSuccess(true);
-    setIsLoading(false);
+    setIsSuccess(false);
     setErrorMessage('');
     try {
       const res = await axios.post(
-        `http://localhost:8000/backend/api/token/`,
+        `https://luna1.propulsion-learn.ch/backend/api/token/`,
         obj,
         {
           headers: {
@@ -55,14 +54,15 @@ function Login() {
 
       window.localStorage.setItem('token', `${accessToken}`);
       window.localStorage.setItem('refreshToken', `${refreshToken}`);
-
+      setIsError(false);
       setIsSuccess(true);
       setIsLoading(false);
 
       return res.data;
     } catch (error) {
-      setErrorMessage(error.response.data);
+      setIsError(true);
       setIsSuccess(false);
+      setErrorMessage(error.response.data.detail);
       setIsLoading(false);
       console.log(error);
     }
@@ -71,6 +71,7 @@ function Login() {
   function onSubmit(data) {
     login(data);
   }
+  console.log(errorMessage);
 
   return (
     <>
@@ -114,6 +115,9 @@ function Login() {
                     Forgot Password?
                   </Link>
                   <div>
+                    {isError ? (
+                      <p style={{ color: 'red' }}>{errorMessage}</p>
+                    ) : null}
                     <Button>Log In </Button>
                   </div>
                 </form>
