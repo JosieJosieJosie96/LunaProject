@@ -3,6 +3,10 @@ import Input from '../components/Input.jsx';
 import { HeadingForm } from '../../ui/HeadingForm.jsx';
 import { Button } from '../../ui/Button.jsx';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
+import { BarLoader } from 'react-spinners';
 
 const ContainerStyled = styled.div`
   display: flex;
@@ -37,100 +41,192 @@ const LabelDiv = styled.div`
 `;
 
 function CreateRestaurant() {
+  const navigate = useNavigate();
+  const token = window.localStorage.getItem('token');
   const { register, handleSubmit } = useForm();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  async function create(obj) {
+    setIsLoading(true);
+    setErrorMessage('');
+    setIsSuccess(true);
+    setIsLoading(false);
+    setErrorMessage('');
+    try {
+      const res = await axios.post(
+        `http://localhost:8000/backend/api/restaurants/new/`,
+        obj,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      setIsSuccess(true);
+      setIsLoading(false);
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error.response.data);
+      setIsSuccess(false);
+      setIsLoading(false);
+    }
+  }
+
+  function onSubmit(data) {
+    create({ ...data, image: data?.image[0] });
+  }
+
   return (
     <>
-      <ContainerStyled>
-        <HeadingForm>CREATE NEW RESTAURANT</HeadingForm>
+      {isSuccess ? (
+        navigate('/search')
+      ) : (
+        <ContainerStyled>
+          <HeadingForm>CREATE NEW RESTAURANT</HeadingForm>
+          {isLoading ? (
+            <BarLoader />
+          ) : (
+            <FormStyled onSubmit={handleSubmit(onSubmit)}>
+              <div>
+                <Input
+                  htmlFor="name"
+                  type="text"
+                  register={register}
+                  name="name"
+                  isRequired={true}
+                >
+                  Name *
+                </Input>
+              </div>
 
-        <FormStyled>
-          <div>
-            <Input htmlFor="name" type="text" register={register} name="name">
-              Name *
-            </Input>
-          </div>
+              <LabelDiv>
+                <LabelSelectStyled>Category *</LabelSelectStyled>
+                <div style={{ marginTop: '10px' }}>
+                  <select
+                    {...register('category', {
+                      required: true,
+                    })}
+                  >
+                    <option value="">Select...</option>
+                    <option value="Asian">Asian</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Burger">Burger</option>
+                    <option value="Arab">Arab</option>
+                    <option value="Mexican">Mexican</option>
+                  </select>
+                </div>
+              </LabelDiv>
 
-          <LabelDiv>
-            <LabelSelectStyled>Category *</LabelSelectStyled>
-            <div style={{ marginTop: '10px' }}>
-              <select
-                {...register('category', {
-                  required: true,
-                })}
+              <Input
+                htmlFor="country"
+                type="text"
+                register={register}
+                name="country"
+                isRequired={true}
               >
-                <option value="">Select...</option>
-                <option value="Asian">Asian</option>
-                <option value="Italian">Italian</option>
-                <option value="Burger">Burger</option>
-                <option value="Arab">Arab</option>
-                <option value="Mexican">Mexican</option>
-              </select>
-            </div>
-          </LabelDiv>
+                Country *
+              </Input>
 
-          <Input
-            htmlFor="country"
-            type="text"
-            register={register}
-            name="country"
-          >
-            Country *
-          </Input>
+              <Input
+                htmlFor="street"
+                type="text"
+                register={register}
+                name="street"
+                isRequired={true}
+              >
+                Street *
+              </Input>
+              <Input
+                htmlFor="city"
+                type="text"
+                register={register}
+                name="city"
+                isRequired={true}
+              >
+                City *
+              </Input>
+              <Input
+                htmlFor="zip"
+                type="number"
+                register={register}
+                name="zip"
+                isRequired={true}
+              >
+                Zip *
+              </Input>
 
-          <Input htmlFor="street" type="text" register={register} name="street">
-            Street *
-          </Input>
-          <Input htmlFor="city" type="text" register={register} name="city">
-            City *
-          </Input>
-          <Input htmlFor="zip" type="number" register={register} name="zip">
-            Zip
-          </Input>
+              <Input
+                htmlFor="website"
+                type="text"
+                register={register}
+                name="website"
+                isRequired={false}
+              >
+                Website
+              </Input>
+              <Input
+                htmlFor="phone"
+                type="number"
+                register={register}
+                name="phone"
+                isRequired={true}
+              >
+                Phone *
+              </Input>
+              <Input
+                htmlFor="email"
+                type="text"
+                register={register}
+                name="email"
+                isRequired={false}
+              >
+                Email address
+              </Input>
 
-          <Input
-            htmlFor="website"
-            type="text"
-            register={register}
-            name="website"
-          >
-            Website
-          </Input>
-          <Input htmlFor="phone" type="number" register={register} name="phone">
-            Phone *
-          </Input>
-          <Input htmlFor="email" type="text" register={register} name="email">
-            Email address
-          </Input>
-
-          <Input
-            htmlFor="opening_hours"
-            type="text"
-            register={register}
-            name="opening_hours"
-          >
-            Opening Hours *
-          </Input>
-          <Input
-            htmlFor="price_level"
-            type="text"
-            register={register}
-            name="price_level"
-          >
-            Price level
-          </Input>
-          <div>
-            <label>Image</label>
-            <div>
-              <InputFileStyled type="file" />
-            </div>
-          </div>
-          <Button
-            style={{ gridColumn: 'span 3 / span 3', placeSelf: 'center' }}
-          >
-            CREATE
-          </Button>
-        </FormStyled>
-      </ContainerStyled>
+              <Input
+                htmlFor="opening_hours"
+                type="text"
+                register={register}
+                name="opening_hours"
+                isRequired={true}
+              >
+                Opening Hours *
+              </Input>
+              <Input
+                htmlFor="price_level"
+                type="text"
+                register={register}
+                name="price_level"
+                isRequired={false}
+              >
+                Price level
+              </Input>
+              <div>
+                <label>Image</label>
+                <div>
+                  <InputFileStyled
+                    {...register('image', {
+                      required: true,
+                    })}
+                    type="file"
+                  />
+                </div>
+              </div>
+              <Button
+                style={{ gridColumn: 'span 3 / span 3', placeSelf: 'center' }}
+              >
+                CREATE
+              </Button>
+            </FormStyled>
+          )}
+        </ContainerStyled>
+      )}
     </>
   );
 }

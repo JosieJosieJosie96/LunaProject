@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Button } from '../../ui/Button';
 import HomeBG from '../assets/img/homepage_bg.jpg';
 
-
 export const HeroContainer = styled.div`
   position: relative;
   isolation: isolate;
@@ -16,14 +15,14 @@ export const HeroContainer = styled.div`
 `;
 
 export const HeroImage = styled.img`
-    position: absolute;
-    inset: 0;
-    z-index: -10;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: right;
-    opacity: 0.6;
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: right;
+  opacity: 0.4;
 `;
 
 export const ContainerAll = styled.div`
@@ -34,14 +33,14 @@ export const ContainerAll = styled.div`
 `;
 
 export const InputDiv = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  width: 100%;
 `;
 
 export const Input = styled.input`

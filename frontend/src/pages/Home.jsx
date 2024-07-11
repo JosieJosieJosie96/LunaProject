@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-content: center;
   justify-items: center;
+  row-gap: 30px;
   /* column-gap: 12px; */
   width: 80%;
 `;
