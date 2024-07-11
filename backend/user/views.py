@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework import status
+from rest_framework import status, filters
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
