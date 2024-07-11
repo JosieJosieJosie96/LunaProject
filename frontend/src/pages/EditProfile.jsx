@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Paragraph,
-  EditContainer
-} from "../components/Profile.styled.js";
-import Input from "../components/Input.jsx";
-import { Button } from "../../ui/Button.jsx";
+import { Paragraph, EditContainer } from '../components/Profile.styled.js';
+import Input from '../components/Input.jsx';
+import { Button } from '../../ui/Button.jsx';
 import { BeatLoader } from 'react-spinners';
-import {useForm} from "react-hook-form";
+import { useForm } from 'react-hook-form';
 
 // eslint-disable-next-line react/prop-types
 
@@ -20,12 +17,23 @@ function EditProfile({ token }) {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/backend/api/users/me/', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const { username, firstName, lastName, location, phone, thingsILove, description } = response.data;
+        const response = await axios.get(
+          'http://localhost:8000/backend/api/users/me/',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        const {
+          username,
+          firstName,
+          lastName,
+          location,
+          phone,
+          thingsILove,
+          description,
+        } = response.data;
         setValue('username', username);
         setValue('firstName', firstName);
         setValue('lastName', lastName);
@@ -47,11 +55,15 @@ function EditProfile({ token }) {
     setIsLoading(true);
     setErrorMessage('');
     try {
-      const response = await axios.patch("http://localhost:8000/backend/api/users/me/", data, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      const response = await axios.patch(
+        'http://localhost:8000/backend/api/users/me/',
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
       setIsLoading(false);
       console.log('Profile updated successfully:', response.data);
     } catch (error) {
@@ -96,12 +108,7 @@ function EditProfile({ token }) {
             register={register}
           />
           <Paragraph>Phone</Paragraph>
-          <Input
-            htmlFor="phone"
-            type="text"
-            name="phone"
-            register={register}
-          />
+          <Input htmlFor="phone" type="text" name="phone" register={register} />
           <Paragraph>Things I Love</Paragraph>
           <Input
             htmlFor="thingsILove"

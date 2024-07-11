@@ -28,38 +28,11 @@ const ImageContainer = styled.div`
   height: 320px;
 `;
 
-function RestaurantCard() {
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  async function getRestaurants() {
-    setIsLoading(true);
-    setErrorMessage('');
-
-    try {
-      const res = await axios.get(
-        `http://localhost:8000/backend/api/restaurants/`,
-      );
-
-      setIsSuccess(true);
-      setIsLoading(false);
-
-      return res.data;
-    } catch (error) {
-      console.log(error);
-      setErrorMessage(error.response.data.email);
-      setIsSuccess(false);
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getRestaurants();
-  }, []);
-
+function RestaurantCard({ restaurants }) {
   return (
     <div>
       <Container>
+        {/* {restaurants.map(restaurant => )} */}
         <Card>
           <div
             style={{
