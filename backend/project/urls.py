@@ -21,6 +21,9 @@ from rest_framework_simplejwt import views as jwt_views
 from registration.views import RegistrationView, RegistrationValidationView
 from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView, RestaurantUserView, \
     RestaurantSpecificView
+from review.views import (ReviewCreateView, ReviewRestaurantView, ReviewUserView, ReviewSpecificView, ReviewGetAllView,
+                          ReviewLikeUserView, ReviewLikeView)
+
 
 urlpatterns = [
     path('backend/admin/', admin.site.urls),
@@ -29,13 +32,23 @@ urlpatterns = [
     path('backend/api/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_refresh'),
     path('backend/api/registration/', RegistrationView.as_view(), name='registration'),
     path('backend/api/registration/validation/', RegistrationValidationView.as_view(), name='registration_validation'),
+    # restaurant views
     path('backend/api/restaurants/new/', RestaurantCreateView.as_view(), name='restaurant_create'),
     path('backend/api/restaurants/', RestaurantGetView.as_view(), name='restaurant_get'),
-    path('backend/api/restaurants/category/<str:category>/', RestaurantCategoryView.as_view(), name='restaurant_category'),
+    path('backend/api/restaurants/category/<str:category>/', RestaurantCategoryView.as_view(),
+         name='restaurant_category'),
     path('backend/api/restaurants/user/<int:user_id>/', RestaurantUserView.as_view(), name='restaurant_user'),
     path('backend/api/restaurants/<int:id>/', RestaurantSpecificView.as_view(), name='restaurant_specific'),
+    # review views
+    path('backend/api/reviews/', ReviewGetAllView.as_view(), name='review_get_all'),
+    path('backend/api/reviews/new/<int:restaurant_id>/', ReviewCreateView.as_view(), name='review_create'),
+    path('backend/api/reviews/restaurant/<int:restaurant_id>/', ReviewRestaurantView.as_view(),
+         name='review_restaurant'),
+    path('backend/api/reviews/user/<int:user_id>/', ReviewUserView.as_view(), name='review_user'),
+    path('backend/api/reviews/<int:review_id>/', ReviewSpecificView.as_view(), name='review_user'),
+    path('backend/api/reviews/like/<int:review_id>/', ReviewLikeView.as_view(), name='review_user'),
+    path('backend/api/reviews/likes/', ReviewLikeUserView.as_view(), name='review_user'),
     # user views
     path('backend/api/users/', include('user.urls')),
-
 
 ]
