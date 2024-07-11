@@ -36,7 +36,7 @@ const ButtonLink = styled.button`
   padding: 4px 32px;
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
 
   &:hover {
@@ -49,8 +49,9 @@ const StyledImgDiv = styled.div`
 `;
 
 const Copyright = styled.p`
-  padding-left: 40px;
-  color: #454545;
+    padding-left: 40px;
+    color: #454545;
+    font-size: 12px;
 `;
 
 function Footer() {
