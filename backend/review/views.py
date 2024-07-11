@@ -3,7 +3,6 @@ from rest_framework.generics import GenericAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from comment.models import Comments
 from restaurant.models import Restaurant
 from review.models import Review
 from review.serializers import ReviewCreateSerializer, ReviewGetSerializer
