@@ -25,12 +25,3 @@ class Restaurant(models.Model):
     price_level = models.CharField(null=True)
     image = models.ImageField(upload_to=get_image_upload_path, null=True)
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            saved_image = self.image
-            self.image = None
-            super(Restaurant, self).save(*args, **kwargs)
-            self.image = saved_image
-
-        super(Restaurant, self).save(*args, **kwargs)

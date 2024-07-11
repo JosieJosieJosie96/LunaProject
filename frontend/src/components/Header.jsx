@@ -1,21 +1,20 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button } from '../../ui/Button';
+import {Button, HeaderNavButtonLogin, HeaderNavButtonSignUp} from '../../ui/Button';
 import LogoImg from '../assets/svg/logo.svg';
 
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 30px;
+  padding: 14px 32px;
 `;
 
 const DivNav = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 0 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
 `;
 
 function Header() {
@@ -52,10 +51,10 @@ function Header() {
           {!token && (
             <>
               <Link to="/login">
-                <Button>Login</Button>
+                <HeaderNavButtonLogin>Login</HeaderNavButtonLogin>
               </Link>
               <Link to="/signup">
-                <Button>Sign up</Button>
+                <HeaderNavButtonSignUp>Sign up</HeaderNavButtonSignUp>
               </Link>
             </>
           )}

@@ -6,29 +6,27 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Card = styled.div`
-  border: 1px solid #f59e0b;
-  border-top: 4px solid #f59e0b;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-  min-width: 300px;
-  max-width: 300px;
-  background-color: white;
+    border: 1px solid #EBEBEB;
+    border-top: 7px solid #f59e0b;
+    min-width: 270px;
+    max-width: 270px;
+    background-color: white;
+    border-radius: 5px;
 `;
 
 export const Container = styled.div`
-  width: 100%;
+    width: 100%;
 `;
 
 const Image = styled.img`
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 `;
 const ImageContainer = styled.div`
-  width: 100%;
-  height: 320px;
+    width: 100%;
+    height: 260px;
 `;
 
 function RestaurantCard({ restaurants }) {

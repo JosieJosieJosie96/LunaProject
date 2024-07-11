@@ -4,13 +4,13 @@ import RestaurantCard from '../components/RestaurantCard';
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-content: center;
-  justify-items: center;
-  row-gap: 30px;
-  /* column-gap: 12px; */
-  width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-content: center;
+    justify-items: center;
+    /* column-gap: 12px; */
+    width: 83%;
+    margin-bottom: 8%;
 `;
 
 function Home() {
@@ -22,7 +22,7 @@ function Home() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '34px',
+        gap: '20px',
       }}
     >
       <HeroHeader />
