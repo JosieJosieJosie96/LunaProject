@@ -28,6 +28,7 @@ class ReviewCreateView(GenericAPIView):
         serializer.save(restaurant=restaurant, user=request.user)
         return Response(serializer.data)
 
+
 class ReviewRestaurantView(GenericAPIView):
     serializer_class = ReviewGetSerializer
     permission_classes = []
@@ -44,6 +45,7 @@ class ReviewRestaurantView(GenericAPIView):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
+
 class ReviewUserView(GenericAPIView):
     serializer_class = ReviewGetSerializer
     permission_classes = []
@@ -59,6 +61,7 @@ class ReviewUserView(GenericAPIView):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
 
 class ReviewSpecificView(GenericAPIView):
     serializer_class = ReviewGetSerializer
@@ -85,6 +88,7 @@ class ReviewSpecificView(GenericAPIView):
             review.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_403_FORBIDDEN)
+
 
     def patch(self, request, *args, **kwargs):
         review = self.get_object()

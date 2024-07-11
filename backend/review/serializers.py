@@ -11,6 +11,7 @@ class ReviewCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['restaurant', 'user']
 
+
 class ReviewGetSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     restaurant = RestaurantGetSerializer()
