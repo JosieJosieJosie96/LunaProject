@@ -19,8 +19,7 @@ from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
 from registration.views import RegistrationView, RegistrationValidationView
-from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView, RestaurantUserView,
-    RestaurantSpecificView
+from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView, RestaurantUserView, RestaurantSpecificView
 from review.views import ReviewCreateView, ReviewRestaurantView, ReviewUserView, ReviewSpecificView, ReviewGetAllView
 
 urlpatterns = [
