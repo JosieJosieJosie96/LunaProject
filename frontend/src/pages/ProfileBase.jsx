@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   MainContainer,
   ProfileLeftContainer,
@@ -6,19 +7,39 @@ import {
   TopMiddleContainer,
   Paragraph,
   SelectionContainer,
-
-} from "../components/Profile.styled.js";
-import HeaderProfile from "../components/HeaderProfile.jsx";
+} from '../components/Profile.styled.js';
+import HeaderProfile from '../components/HeaderProfile.jsx';
 import ProfileComments from './ProfileComments';
 import ProfileReviews from './ProfileReviews';
 import ProfileRestaurants from './ProfileRestaurants';
 import EditProfile from './EditProfile';
 
-
-
-
 function ProfileBase() {
+  const token = localStorage.getItem("token")
   const [currentSection, setCurrentSection] = useState('editProfile');
+  const [userData, setUserData] = useState([]);
+
+  // const [error, setError] = useState(null);
+ const GetMe = async () => {
+  const token = window.localStorage.getItem('token');
+
+  try {
+    const res = await axios.get("http://localhost:8000/backend/api/users/me/", {
+      headers: { Authorization: `Bearer ${token}`},
+    });
+setUserData(res.data)
+   console.log(res.data)
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+  useEffect(() => {
+
+GetMe()
+
+
+  }, []);
 
   const renderSection = () => {
     switch (currentSection) {
@@ -35,80 +56,80 @@ function ProfileBase() {
     }
   };
 
+
+
+  // if (error) {
+  //   return <div>Error loading user data</div>;
+  // }
+  console.log(userData)
+
   return (
     <>
-      <HeaderProfile>
-        </HeaderProfile>
+      <HeaderProfile />
       <MainContainer>
-
         <ProfileLeftContainer>
           <div className={'profileimage'}>
             <img src={'path/to/profile-image.jpg'} alt="ProfileBase" />
           </div>
-          {/*<h3>{userdata.name}'s profile</h3>*/}
+          <h3>{userData?.first_name}s profile</h3>
           <SelectionContainer onClick={() => setCurrentSection('reviews')}>
             <h3>Reviews</h3>
-            <img src={"frontend/src/assets/svg/star.svg"} alt={"reviews"} />
+            <img src={'frontend/src/assets/svg/star.svg'} alt={'reviews'} />
           </SelectionContainer>
           <SelectionContainer onClick={() => setCurrentSection('comments')}>
             <h3>Comments</h3>
-            <img src={"frontend/src/assets/svg/comment.svg"} alt={"comment"} />
+            <img src={'frontend/src/assets/svg/comment.svg'} alt={'comment'} />
           </SelectionContainer>
           <SelectionContainer onClick={() => setCurrentSection('restaurants')}>
             <h3>Restaurants</h3>
-            <img src={"frontend/src/assets/svg/restaurant.svg"} alt={'restaurant'} />
+            <img src={'frontend/src/assets/svg/restaurant.svg'} alt={'restaurant'} />
           </SelectionContainer>
           <SelectionContainer onClick={() => setCurrentSection('editProfile')}>
             <h3>Edit Profile</h3>
-            <img src={"frontend/src/assets/svg/edit.svg"} alt={'edit'} />
+            <img src={'frontend/src/assets/svg/edit.svg'} alt={'edit'} />
           </SelectionContainer>
         </ProfileLeftContainer>
 
-
-
-
-        <div>
-          {renderSection()}
-        </div>
+        <div>{renderSection()}</div>
 
         <RightContainer>
-          {/*<h3>About {userdata.name}</h3>*/}
+          <h3>About {userData?.first_name}</h3>
           <div className={'location2'}>
             <h3>Location</h3>
-            {/*<p>{userdata.location}</p>*/}
+            <p>{userData?.location}</p>
           </div>
           <div className={'review 1'}>
             <h3>Luna member since</h3>
-            {/*<p>{userdata.created}</p>*/}
+            <p>{new Date(userData?.created).toLocaleDateString()}</p>
           </div>
           <div className={'things I love'}>
             <h3>Things I love</h3>
-            {/*<p>{userdata.likes}</p>*/}
+            <p>{userData?.things_i_love}</p>
           </div>
           <div className={'description'}>
             <h3>Description</h3>
-            {/*<p>{userdata.description}</p>*/}
+            <p>{userData?.description}</p>
           </div>
         </RightContainer>
 
-                 <TopMiddleContainer>
-            <div className={'name'}>
-              <Paragraph>name</Paragraph>
-              {/*<p>{userdata.name}</p>*/}
-            </div>
-            <div className={'location'}>
-              <p>location</p>
-              {/*<p>{userdata.location}</p>*/}
-            </div>
-            <div className={'reviews'}>
-              <p>reviews</p>
-              {/*<p>{userdata.reviews}</p>*/}
-            </div>
-            <div className={'comments'}>
-              <p>comments</p>
-              {/*<p>{userdata.comments}</p>*/}
-            </div>
-          </TopMiddleContainer>
+        <TopMiddleContainer>
+          <div className={'name'}>
+
+            <div>{userData?.first_name}</div>
+          </div>
+          <div className={'location'}>
+
+            <p>{userData?.location}</p>
+          </div>
+          <div className={'reviews'}>
+
+            <p>{userData?.reviews} reviews</p>
+          </div>
+          <div className={'comments'}>
+
+            <p>{userData?.comments} comments</p>
+          </div>
+        </TopMiddleContainer>
       </MainContainer>
     </>
   );

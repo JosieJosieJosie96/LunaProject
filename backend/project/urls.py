@@ -21,12 +21,12 @@ from rest_framework_simplejwt import views as jwt_views
 
 from comment.views import CommentCreateView, CommentDeleteView, CommentUserView
 from project import settings
+from project.search import SearchView
 from registration.views import RegistrationView, RegistrationValidationView
 from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView, RestaurantUserView, \
     RestaurantSpecificView
 from review.views import (ReviewCreateView, ReviewRestaurantView, ReviewUserView, ReviewSpecificView, ReviewGetAllView,
                           ReviewLikeUserView, ReviewLikeView, ReviewCommentUserView)
-
 
 urlpatterns = [
     path('backend/admin/', admin.site.urls),
@@ -58,6 +58,8 @@ urlpatterns = [
     path('backend/api/review/comment/<int:comment_id>/', CommentDeleteView.as_view(), name='review_user'),
     # user views
     path('backend/api/users/', include('user.urls')),
+    # search view
+    path('backend/api/search/', SearchView.as_view(), name='search'),
 
 ]
 
