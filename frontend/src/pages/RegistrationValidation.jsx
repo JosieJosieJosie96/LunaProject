@@ -75,7 +75,7 @@ function RegistrationValidation() {
                   name="email"
                   isRequired={true}
                 >
-                  EMAIL
+                  EMAIL *
                 </Input>
 
                 <Input
@@ -83,16 +83,18 @@ function RegistrationValidation() {
                   type="text"
                   register={register}
                   name="code"
+                  isRequired={true}
                 >
-                  CODE
+                  CODE *
                 </Input>
                 <Input
                   htmlFor="username"
                   type="text"
                   register={register}
                   name="username"
+                  isRequired={true}
                 >
-                  USERNAME
+                  USERNAME *
                 </Input>
                 <Input
                   htmlFor="location"
@@ -107,16 +109,36 @@ function RegistrationValidation() {
                   type="password"
                   register={register}
                   name="password"
+                  isRequired={true}
                 >
-                  PASSWORD
+                  PASSWORD *
                 </Input>
                 <Input
                   htmlFor="password_repeat"
                   type="password"
                   register={register}
                   name="password_repeat"
+                  isRequired={true}
                 >
-                  REPEAT PASSWORD
+                  REPEAT PASSWORD *
+                </Input>
+                <Input
+                  htmlFor="first_name"
+                  type="text"
+                  register={register}
+                  name="first_name"
+                  isRequired={true}
+                >
+                  FIRST NAME *
+                </Input>
+                <Input
+                  htmlFor="last_name"
+                  type="text"
+                  register={register}
+                  name="last_name"
+                  isRequired={true}
+                >
+                  LAST NAME *
                 </Input>
 
                 <Button

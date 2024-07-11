@@ -1,59 +1,79 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+/* eslint-disable react/prop-types */
+
+import { Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 export const Card = styled.div`
-  border: 1px solid #f59e0b;
-  border-top: 4px solid #f59e0b;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-  min-width: 300px;
-  max-width: 300px;
-  background-color: white;
+    border: 1px solid #EBEBEB;
+    border-top: 7px solid #f59e0b;
+    min-width: 270px;
+    max-width: 270px;
+    background-color: white;
+    border-radius: 5px;
 `;
 
 export const Container = styled.div`
-  width: 100%;
+    width: 100%;
 `;
 
 const Image = styled.img`
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 `;
 const ImageContainer = styled.div`
-  width: 100%;
-  height: 320px;
+    width: 100%;
+    height: 260px;
 `;
 
 function RestaurantCard({ restaurants }) {
-  return (
-    <div>
-      <Container>
-        {/* {restaurants.map(restaurant => )} */}
-        <Card>
-          <div
-            style={{
-              marginTop: '4px',
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div>
-              <h3>%RESTAURANT NAME%</h3>
+  const navigate = useNavigate();
 
-              <p>%RESTAURANT STREET%</p>
-              <div>%AVERAGE REVIEW% %REVIEWS%</div>
+  function handleClick(id) {
+    navigate(`/restaurant/${id}`, {
+      replace: true,
+    });
+  }
+
+  return (
+    <>
+      {restaurants?.map((restaurant, index) => (
+        <Fragment key={index}>
+          {!restaurant.image ? null : (
+            <div
+              onClick={() => handleClick(restaurant.id)}
+              style={{ cursor: 'pointer' }}
+            >
+              <Container>
+                <Card>
+                  <div
+                    style={{
+                      marginTop: '4px',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      padding: '10px 24px',
+                    }}
+                  >
+                    <div>
+                      <h3>{restaurant.name}</h3>
+
+                      <p>{restaurant.street}</p>
+                      <div>%AVERAGE REVIEW% %REVIEWS%</div>
+                    </div>
+                  </div>
+                  <ImageContainer>
+                    <Image src={restaurant.image} alt="restaurant image" />
+                  </ImageContainer>
+                </Card>
+              </Container>
             </div>
-          </div>
-          <ImageContainer>
-            <Image src="https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?cs=srgb&dl=pexels-reneterp-1581384.jpg&fm=jpg" />
-          </ImageContainer>
-        </Card>
-      </Container>
-    </div>
+          )}
+        </Fragment>
+      ))}
+    </>
   );
 }
 

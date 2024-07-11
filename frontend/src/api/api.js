@@ -11,7 +11,6 @@ export const getUsers = async (setUsers) => {
       },
     );
 
-    console.log(res.data);
     setUsers(res.data);
     return res.data;
   } catch (error) {
@@ -30,7 +29,6 @@ export const getRestaurants = async (setRestaurants) => {
       },
     );
 
-    console.log(res.data);
     setRestaurants(res.data);
     return res.data;
   } catch (error) {
@@ -46,8 +44,19 @@ export const getReviews = async (setReviews) => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    console.log(res.data);
     setReviews(res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getRestaurantByID = async (setRestaurantData, id) => {
+  try {
+    const res = await axios.get(
+      `http://localhost:8000/backend/api/restaurants/${id}/`,
+    );
+
+    setRestaurantData(res.data);
     return res.data;
   } catch (error) {
     console.log(error);

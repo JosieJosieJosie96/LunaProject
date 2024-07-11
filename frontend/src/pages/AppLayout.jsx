@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const StyledLayout = styled.div`
   display: grid;
-  height: 100vh;
+  min-height: 100vh;
   grid-template-rows: auto 1fr auto;
 `;
 
@@ -14,7 +14,7 @@ function AppLayout() {
     <StyledLayout>
       <Header />
       <div style={{ overflow: 'scroll' }}>
-        <main style={{ height: '100%', backgroundColor: '#e3e3e3' }}>
+        <main style={{ height: '100%', backgroundColor: '#f8f8f8' }}>
           <Outlet />
         </main>
       </div>
