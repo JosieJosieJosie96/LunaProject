@@ -7,8 +7,6 @@ import { BeatLoader } from 'react-spinners';
 import { useForm } from 'react-hook-form';
 
 // eslint-disable-next-line react/prop-types
-
-// eslint-disable-next-line react/prop-types
 function EditProfile({ token }) {
   const { register, handleSubmit, setValue } = useForm();
   const [isLoading, setIsLoading] = useState(true);
