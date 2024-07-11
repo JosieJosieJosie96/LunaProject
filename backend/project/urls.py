@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
+from comment.views import CommentCreateView, CommentDeleteView, CommentUserView
 from registration.views import RegistrationView, RegistrationValidationView
 from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView, RestaurantUserView, \
     RestaurantSpecificView
@@ -48,6 +49,10 @@ urlpatterns = [
     path('backend/api/reviews/<int:review_id>/', ReviewSpecificView.as_view(), name='review_user'),
     path('backend/api/reviews/like/<int:review_id>/', ReviewLikeView.as_view(), name='review_user'),
     path('backend/api/reviews/likes/', ReviewLikeUserView.as_view(), name='review_user'),
+    # comments views
+    path('backend/api/review/comment/user/<int:user_id>/', CommentUserView.as_view(), name='review_user'),
+    path('backend/api/review/comment/new/<int:review_id>/', CommentCreateView.as_view(), name='review_user'),
+    path('backend/api/review/comment/<int:comment_id>/', CommentDeleteView.as_view(), name='review_user'),
     # user views
     path('backend/api/users/', include('user.urls')),
 
