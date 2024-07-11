@@ -89,7 +89,6 @@ class ReviewSpecificView(GenericAPIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_403_FORBIDDEN)
 
-
     def patch(self, request, *args, **kwargs):
         review = self.get_object()
         if review.user.id is request.user.id or request.user.is_superuser:
