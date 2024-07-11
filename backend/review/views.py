@@ -3,6 +3,7 @@ from rest_framework.generics import GenericAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from comment.models import Comments
 from restaurant.models import Restaurant
 from review.models import Review
 from review.serializers import ReviewCreateSerializer, ReviewGetSerializer
@@ -154,6 +155,25 @@ class ReviewLikeUserView(GenericAPIView):
         if filter_option is not None:
             return queryset.filter(liked_by=filter_option)
         return queryset
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class ReviewCommentUserView(GenericAPIView):
+    serializer_class = ReviewGetSerializer
+    permission_classes = []
+
+    def get_queryset(self):
+        comments = Comments.objects.all().values('review_id')
+        reviews = Review.objects.all()
+        filter_option = self.request.user
+        if filter_option is not None:
+            comments_filtered=comments.filter(user=filter_option)
+            reviews_filtered=reviews.filter(id=comments_filtered)
+        return reviews_filtered
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
