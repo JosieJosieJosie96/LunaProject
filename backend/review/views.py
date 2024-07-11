@@ -167,12 +167,10 @@ class ReviewCommentUserView(GenericAPIView):
     permission_classes = []
 
     def get_queryset(self):
-        comments = Comments.objects.all().values('review_id')
         reviews = Review.objects.all()
         filter_option = self.request.user
         if filter_option is not None:
-            comments_filtered = comments.filter(user=filter_option)
-            reviews_filtered = reviews.filter(id=comments_filtered)
+            reviews_filtered = reviews.filter(comments__user=filter_option).distinct()
         return reviews_filtered
 
     def get(self, request, *args, **kwargs):
