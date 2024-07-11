@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from '../../ui/Button';
+import {Button, SearchButtonHero} from '../../ui/Button';
 import HomeBG from '../assets/img/homepage_bg.jpg';
 
 
@@ -9,9 +9,9 @@ export const HeroContainer = styled.div`
   overflow: hidden;
   background-color: #111827;
   background-image: linear-gradient(black, black);
-  padding: 96px 0;
+  padding: 156px 0;
   width: 100%;
-  height: 13%;
+  height: 4%;
   margin-bottom: 40px;
 `;
 
@@ -19,11 +19,10 @@ export const HeroImage = styled.img`
     position: absolute;
     inset: 0;
     z-index: -10;
-    height: 100%;
     width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: right;
-    opacity: 0.6;
+    opacity: 0.7;
 `;
 
 export const ContainerAll = styled.div`
@@ -45,11 +44,12 @@ export const InputDiv = styled.div`
 `;
 
 export const Input = styled.input`
-  height: 32px;
-  width: 384px;
-  border-radius: 6px;
-  padding: 0 8px 0 8px;
-  font-size: 16px;
+    height: 55px;
+    width: 515px;
+    margin-right: 25px;
+    border-radius: 6px;
+    padding: 0 8px 0 8px;
+    font-size: 20px;
 `;
 
 function HeroHeader() {
@@ -78,7 +78,7 @@ function HeroHeader() {
         <InputDiv>
           <div style={{ display: 'flex' }}>
             <Input type="text" placeholder="Search..." />
-            <Button>Search</Button>
+            <SearchButtonHero>Search</SearchButtonHero>
           </div>
         </InputDiv>
       </HeroContainer>
