@@ -4,30 +4,23 @@ import RestaurantCard from '../components/RestaurantCard';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CardContainer } from './Home';
-import axios from 'axios';
-import { BeatLoader } from 'react-spinners';
-import { getRestaurants, getReviews, getUsers } from '../api/api';
+import { getRestaurants, getUsers } from '../api/api';
 
 const InputContainer = styled.div`
   display: flex;
   align-items: start;
   justify-content: space-between;
-  /* gap: 3rem; */
   width: 100%;
   height: 36px;
   border: 1px solid #05050513;
-  /* padding: 8px 0; */
 `;
 
 const Input = styled.input`
   width: 80%;
   height: 100%;
-
   padding-left: 33px;
   border: none;
-
   background-color: white;
-
   font-size: 24px;
 `;
 
@@ -51,7 +44,6 @@ function Search() {
   const [currentPage, setCurrentPage] = useState(<RestaurantCard />);
   const [users, setUsers] = useState([]);
   const [restaurants, setRestaurant] = useState([]);
-  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     getUsers(setUsers);
@@ -85,9 +77,7 @@ function Search() {
             color:
               currentPage.type.name === 'RestaurantCard' ? 'black' : 'gray',
           }}
-          onClick={() =>
-            setCurrentPage(<RestaurantCard restaurants={restaurants} />)
-          }
+          onClick={() => setCurrentPage(<RestaurantCard />)}
         >
           RESTAURANTS
         </button>
@@ -108,7 +98,7 @@ function Search() {
               currentPage.type.name === 'UserCard' ? '2px solid orange' : '',
             color: currentPage.type.name === 'UserCard' ? 'black' : 'gray',
           }}
-          onClick={() => setCurrentPage(<UserCard users={users} />)}
+          onClick={() => setCurrentPage(<UserCard />)}
         >
           USERS
         </button>
@@ -120,7 +110,21 @@ function Search() {
           justifyContent: 'center',
         }}
       >
-        <CardContainer>{currentPage}</CardContainer>
+        {currentPage.type.name === 'UserCard' && (
+          <CardContainer>
+            <UserCard users={users} />
+          </CardContainer>
+        )}
+        {currentPage.type.name === 'RestaurantCard' && (
+          <CardContainer>
+            <RestaurantCard restaurants={restaurants} />
+          </CardContainer>
+        )}
+        {currentPage.type.name === 'ReviewCard' && (
+          <CardContainer>
+            <ReviewCard />
+          </CardContainer>
+        )}
       </div>
     </div>
   );

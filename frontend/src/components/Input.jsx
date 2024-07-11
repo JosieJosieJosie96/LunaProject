@@ -20,13 +20,15 @@ const InputStyled = styled.input`
   border: 1px solid #00000039;
 `;
 
-function Input({ register, children, htmlFor, type, name, value }) {
+function Input({ register, children, htmlFor, type, name, value, isRequired }) {
   return (
     <div>
       <Label htmlFor={htmlFor}>{children}</Label>
       <div style={{ marginTop: '8px', marginBottom: '12px' }}>
         <InputStyled
-          {...register(`${name}`)}
+          {...register(`${name}`, {
+            required: isRequired,
+          })}
           type={type}
           defaultValue={value}
         />

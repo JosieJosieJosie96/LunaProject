@@ -36,9 +36,9 @@ function Login() {
   async function login(obj) {
     setIsLoading(true);
     setErrorMessage('');
-      setIsSuccess(true);
-      setIsLoading(false);
-         setErrorMessage('');
+    setIsSuccess(true);
+    setIsLoading(false);
+    setErrorMessage('');
     try {
       const res = await axios.post(
         `http://localhost:8000/backend/api/token/`,
@@ -69,7 +69,6 @@ function Login() {
   }
 
   function onSubmit(data) {
-    console.log(data);
     login(data);
   }
 

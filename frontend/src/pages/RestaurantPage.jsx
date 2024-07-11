@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import WriteReview from '../components/WriteReview';
 import {
   ContainerAll,
@@ -9,6 +9,8 @@ import {
 import { Button } from '../../ui/Button';
 import RestaurantPageReviewCard from '../components/RestaurantPageReviewCard';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { getRestaurantByID } from '../api/api';
 
 const HeroTextContainer = styled.div`
   position: absolute;
@@ -25,12 +27,20 @@ const HeroTextContainer = styled.div`
 `;
 
 function RestaurantPage() {
+  const params = useParams();
+  const restaurantId = params.restaurantId;
+  const [restaurantData, setRestaurantData] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const [isReviewButtonClicked, setIsReviewButtonClicked] = useState(false);
+
+  useEffect(() => {
+    getRestaurantByID(setRestaurantData, restaurantId);
+  }, []);
+
   return (
     <>
       <HeroContainer>
-        <HeroImage src="" />
+        <HeroImage src={restaurantData?.image} />
 
         <ContainerAll>
           <div
@@ -50,8 +60,8 @@ function RestaurantPage() {
           ></div>
         </ContainerAll>
         <HeroTextContainer>
-          <h2>%RESTAURANT NAME%</h2>
-          <p>%RESTAURANT PRODUCT%</p>
+          <h2>{restaurantData?.name}</h2>
+          <p>{restaurantData?.category}</p>
           <div>
             <p>%STAR% </p>
             <p>%NUMBER REVIEWS% reviews</p>
@@ -126,7 +136,7 @@ function RestaurantPage() {
                     style={{ paddingRight: '12px' }}
                     src="src/assets/svg/clock.svg"
                   />
-                  <p>%OPENING HOURS%</p>
+                  <p>{restaurantData?.opening_hours}</p>
                 </div>
                 <div
                   style={{
@@ -139,7 +149,7 @@ function RestaurantPage() {
                     style={{ paddingRight: '12px' }}
                     src="src/assets/svg/money.svg"
                   />
-                  <p>%PRICE LEVEL%</p>
+                  <p>{restaurantData?.price_level}</p>
                 </div>
                 <div
                   style={{
