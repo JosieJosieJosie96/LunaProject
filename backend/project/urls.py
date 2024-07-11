@@ -21,7 +21,8 @@ from rest_framework_simplejwt import views as jwt_views
 from registration.views import RegistrationView, RegistrationValidationView
 from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView, RestaurantUserView, \
     RestaurantSpecificView
-from review.views import ReviewCreateView, ReviewRestaurantView, ReviewUserView, ReviewSpecificView
+from review.views import ReviewCreateView, ReviewRestaurantView, ReviewUserView, ReviewSpecificView, ReviewLikeView, \
+    ReviewLikeUserView
 
 urlpatterns = [
     path('backend/admin/', admin.site.urls),
@@ -41,6 +42,8 @@ urlpatterns = [
     path('backend/api/reviews/restaurant/<int:restaurant_id>/', ReviewRestaurantView.as_view(), name='review_restaurant'),
     path('backend/api/reviews/user/<int:user_id>/', ReviewUserView.as_view(), name='review_user'),
     path('backend/api/reviews/<int:review_id>/', ReviewSpecificView.as_view(), name='review_user'),
+    path('backend/api/reviews/like/<int:review_id>/', ReviewLikeView.as_view(), name='review_user'),
+    path('backend/api/reviews/likes/', ReviewLikeUserView.as_view(), name='review_user'),
     # user views
     path('backend/api/users/', include('user.urls')),
 

@@ -97,3 +97,59 @@ class ReviewSpecificView(GenericAPIView):
             serializer.save()
             return Response(serializer.data)
         return Response(status=status.HTTP_403_FORBIDDEN)
+
+
+class ReviewLikeView(GenericAPIView):
+    serializer_class = ReviewGetSerializer
+    permission_classes = []
+
+    def get_object(self):
+        filter_option = self.kwargs.get('review_id')
+        try:
+            return Review.objects.get(id=filter_option)
+        except Review.DoesNotExist:
+            return None
+
+    def post(self, request, *args, **kwargs):
+        review = self.get_object()
+        user = self.request.user
+        review_all_likes = review.liked_by.all()
+        user_liked_review = user in review_all_likes
+        if not user_liked_review:
+            review.liked_by.add(user)
+            serializer = self.get_serializer(review, partial=True)
+            return Response(serializer.data)
+        # This else would make it possible to only use the post endpoint to toggle liked_by
+        # else:
+        #     review.liked_by.remove(user)
+        #     serializer = self.get_serializer(review, partial=True)
+        #     return Response(serializer.data)
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+    def delete(self, request, *args, **kwargs):
+        review = self.get_object()
+        user = self.request.user
+        review_all_likes = review.liked_by.all()
+        user_liked_review = user in review_all_likes
+        if user_liked_review:
+            review.liked_by.remove(user)
+            serializer = self.get_serializer(review, partial=True)
+            return Response(serializer.data)
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+
+class ReviewLikeUserView(GenericAPIView):
+    serializer_class = ReviewGetSerializer
+    permission_classes = []
+
+    def get_queryset(self):
+        queryset = Review.objects.all()
+        filter_option = self.request.user
+        if filter_option is not None:
+            return queryset.filter(liked_by=filter_option)
+        return queryset
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

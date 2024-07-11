@@ -22,7 +22,6 @@ class User(AbstractUser):
     date_joined = models.DateTimeField(auto_now_add=True)
     profile_picture = models.ImageField(upload_to=get_profile_picture_upload_path, blank=True, null=True)
     banner_picture = models.ImageField(upload_to=get_banner_picture_upload_path, blank=True, null=True)
-    likes = models.ManyToManyField(Review, blank=True, related_name="liked_by")
 
     def __str__(self):
         return self.username
