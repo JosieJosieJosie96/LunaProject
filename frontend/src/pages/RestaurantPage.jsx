@@ -43,132 +43,76 @@ function RestaurantPage() {
             <HeroContainer>
                 <HeroImage src={restaurantData?.image}/>
 
-                <ContainerAll>
-                    <div
-                        style={{
-                            marginLeft: 'auto',
-                            marginRight: 'auto',
-                            maxWidth: '672px',
-                        }}
-                    ></div>
-                    <div
-                        style={{
-                            marginTop: '40px',
-                            marginLeft: 'auto',
-                            marginRight: 'auto',
-                            maxWidth: '672px',
-                        }}
-                    ></div>
-                </ContainerAll>
-                <HeroTextContainer>
-                    <h2>{restaurantData?.name}</h2>
-                    <p>{restaurantData?.category}</p>
-                    <div>
-                        <p>%STAR% </p>
-                        <p>%NUMBER REVIEWS% reviews</p>
-                    </div>
-                </HeroTextContainer>
-            </HeroContainer>
-            {isReviewButtonClicked ? (
-                <WriteReview setIsReviewButtonClicked={setIsReviewButtonClicked}/>
-            ) : (
-                <div style={{display: 'flex', justifyContent: 'center', gap: '50px'}}>
-                    <div
-                        style={{
-                            display: 'flex',
+        <ContainerAll>
+          <div
+            style={{
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              maxWidth: '672px',
+            }}
+          ></div>
+          <div
+            style={{
+              marginTop: '40px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              maxWidth: '672px',
+            }}
+          ></div>
+        </ContainerAll>
+        <HeroTextContainer>
+          <h2>{restaurantData?.name}</h2>
+          <p>{restaurantData?.category}</p>
+          <div>
+            <p>%STAR% </p>
+            <p>%NUMBER REVIEWS% reviews</p>
+          </div>
+        </HeroTextContainer>
+      </HeroContainer>
+      {isReviewButtonClicked ? (
+        <WriteReview
+          restaurantId={restaurantId}
+          setIsReviewButtonClicked={setIsReviewButtonClicked}
+        />
+      ) : (
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '50px' }}>
+          <div
+            style={{
+              display: 'flex',
 
-                            width: '60%',
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: 'flex',
-                                width: '100%',
-                                justifyContent: 'center',
-                                gap: '120px',
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    width: '100%',
-                                    backgroundColor: 'white',
-                                    padding: '24px',
-                                }}
-                            >
-                                <div style={{width: '100%'}}>
-                                    <div style={{display: 'flex', flexDirection: 'column'}}>
-                                        <div style={{width: '100%'}}>
-                                            <div style={{display: 'flex', gap: '10px'}}>
-                                                <Input
-                                                    style={{
-                                                        width: '80%',
-                                                        border: '1px solid rgba(0, 0, 0, 0.105)',
-                                                    }}
-                                                    type="text"
-                                                    placeholder="Filter"
-                                                />
-                                                <Button style={{width: '20%'}}>FILTER</Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <RestaurantPageReviewCard
-                                        setIsClicked={setIsClicked}
-                                        isClicked={isClicked}
-                                    />
-                                </div>
-                            </div>
-                            <div
-                                style={{
-                                    width: '100%',
-                                    backgroundColor: 'white',
-                                    padding: '24px',
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        borderBottom: '1px solid rgba(0, 0, 0, 0.105)',
-                                        paddingBottom: '12px',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <img
-                                        style={{paddingRight: '12px'}}
-                                        src="src/assets/svg/clock.svg"
-                                    />
-                                    <p>{restaurantData?.opening_hours}</p>
-                                </div>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        paddingBottom: '14px',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <img
-                                        style={{paddingRight: '12px'}}
-                                        src="src/assets/svg/money.svg"
-                                    />
-                                    <p>{restaurantData?.price_level}</p>
-                                </div>
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        gap: '7px',
-                                        paddingTop: '20px',
-                                    }}
-                                >
-                                    <Button
-                                        onClick={() => setIsReviewButtonClicked((prev) => !prev)}
-                                    >
-                                        WRITE A REVIEW
-                                    </Button>
-                                    <Button>EDIT DATA</Button>
-                                </div>
-                            </div>
-                        </div>
+              width: '60%',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                gap: '120px',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  backgroundColor: 'white',
+                  padding: '24px',
+                }}
+              >
+                <div style={{ width: '100%' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ width: '100%' }}>
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        <Input
+                          style={{
+                            width: '80%',
+                            border: '1px solid rgba(0, 0, 0, 0.105)',
+                          }}
+                          type="text"
+                          placeholder="Filter"
+                        />
+                        <Button style={{ width: '20%' }}>FILTER</Button>
+                      </div>
                     </div>
                 </div>
             )}

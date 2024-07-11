@@ -1,16 +1,16 @@
 import HeroHeader from '../components/HeroHeader';
 import { HeadingForm } from '../../ui/HeadingForm';
-import RestaurantCard from '../components/RestaurantCard';
+// import RestaurantCard from '../components/RestaurantCard';
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    align-content: center;
-    justify-items: center;
-    /* column-gap: 12px; */
-    width: 83%;
-    margin-bottom: 8%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-content: center;
+  justify-items: center;
+  /* column-gap: 12px; */
+  width: 83%;
+  margin-bottom: 8%;
 `;
 
 function Home() {
@@ -45,10 +45,10 @@ function Home() {
       </div>
 
       <CardContainer>
+        {/* <RestaurantCard />
+        {/* <RestaurantCard />
         <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
+        <RestaurantCard /> */}
       </CardContainer>
     </div>
   );

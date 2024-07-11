@@ -5,7 +5,7 @@ export const getUsers = async (setUsers) => {
 
   try {
     const res = await axios.get(
-      `http://localhost:8000/backend/api/users/list/`,
+      `https://luna1.propulsion-learn.ch/backend/api/users/list/`,
       {
         headers: { Authorization: `Bearer ${token}` },
       },
@@ -23,7 +23,7 @@ export const getRestaurants = async (setRestaurants) => {
 
   try {
     const res = await axios.get(
-      `http://localhost:8000/backend/api/restaurants/`,
+      `https://luna1.propulsion-learn.ch/backend/api/restaurants/`,
       {
         headers: { Authorization: `Bearer ${token}` },
       },
@@ -40,9 +40,12 @@ export const getReviews = async (setReviews) => {
   const token = window.localStorage.getItem('token');
 
   try {
-    const res = await axios.get(`http://localhost:8000/backend/api/reviews/`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await axios.get(
+      `https://luna1.propulsion-learn.ch/backend/api/reviews/`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
 
     setReviews(res.data);
     return res.data;
@@ -53,7 +56,7 @@ export const getReviews = async (setReviews) => {
 export const getRestaurantByID = async (setRestaurantData, id) => {
   try {
     const res = await axios.get(
-      `http://localhost:8000/backend/api/restaurants/${id}/`,
+      `https://luna1.propulsion-learn.ch/backend/api/restaurants/${id}/`,
     );
 
     setRestaurantData(res.data);

@@ -19,7 +19,7 @@ function SignUp() {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/backend/api/registration/`,
+        `https://luna1.propulsion-learn.ch/backend/api/registration/`,
         obj,
         {
           headers: {
