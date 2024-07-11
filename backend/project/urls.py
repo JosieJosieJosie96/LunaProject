@@ -14,16 +14,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 
 from comment.views import CommentCreateView, CommentDeleteView, CommentUserView
+from project import settings
 from registration.views import RegistrationView, RegistrationValidationView
 from restaurant.views import RestaurantCreateView, RestaurantGetView, RestaurantCategoryView, RestaurantUserView, \
     RestaurantSpecificView
 from review.views import (ReviewCreateView, ReviewRestaurantView, ReviewUserView, ReviewSpecificView, ReviewGetAllView,
-                          ReviewLikeUserView, ReviewLikeView)
+                          ReviewLikeUserView, ReviewLikeView, ReviewCommentUserView)
 
 
 urlpatterns = [
@@ -49,6 +51,7 @@ urlpatterns = [
     path('backend/api/reviews/<int:review_id>/', ReviewSpecificView.as_view(), name='review_user'),
     path('backend/api/reviews/like/<int:review_id>/', ReviewLikeView.as_view(), name='review_user'),
     path('backend/api/reviews/likes/', ReviewLikeUserView.as_view(), name='review_user'),
+    path('backend/api/reviews/comments/', ReviewCommentUserView.as_view(), name='review_user'),
     # comments views
     path('backend/api/review/comment/user/<int:user_id>/', CommentUserView.as_view(), name='review_user'),
     path('backend/api/review/comment/new/<int:review_id>/', CommentCreateView.as_view(), name='review_user'),
@@ -57,3 +60,6 @@ urlpatterns = [
     path('backend/api/users/', include('user.urls')),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
