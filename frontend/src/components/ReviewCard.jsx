@@ -21,47 +21,45 @@ const Flex = styled.div`
     align-items: center;
     height: fit-content;
     width: 100%;
-
-    buttonLike {
-        padding: 3px 15px;
-        border: none;
-        background-color: rgba(145, 145, 145, 0.6);
-        color: white;
-        border-radius: 100px 0 0 100px;
-        min-height: 33px;
-        margin-right: 1px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        width: 100px;
-        justify-content: space-between;
-
-        &:hover {
-            background-color: #757575;
-            transform: scale(0.96);
-        }
-    }
-
-    buttonComment {
-        padding: 3px 15px;
-        border: none;
-        background-color: rgba(145, 145, 145, 0.6);
-        color: white;
-        border-radius: 0 100px 100px 0;
-        cursor: pointer;
-        display: flex;
-        min-height: 33px;
-        justify-content: space-between;
-        align-items: center;
-        width: 100px;
-
-
-        &:hover {
-            background-color: #757575;
-            transform: scale(0.96);
-        }
-    }
 `;
+
+const ButtonLike = styled.button`
+    padding: 3px 15px;
+    border: none;
+    background-color: rgba(145, 145, 145, 0.6);
+    color: white;
+    border-radius: 100px 0 0 100px;
+    min-height: 33px;
+    margin-right: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 120px;
+    justify-content: space-between;
+
+    &:hover {
+        background-color: #757575;
+        transform: scale(0.96);
+    }`
+
+const ButtonComment = styled.button`
+    padding: 3px 15px;
+    border: none;
+    background-color: rgba(145, 145, 145, 0.6);
+    color: white;
+    border-radius: 0 100px 100px 0;
+    cursor: pointer;
+    display: flex;
+    min-height: 33px;
+    justify-content: space-between;
+    align-items: center;
+    width: 120px;
+
+    &:hover {
+        background-color: #757575;
+        transform: scale(0.96);
+    }
+`
 
 function ReviewCard() {
     return (
@@ -108,16 +106,16 @@ function ReviewCard() {
                                 corrupti ea!
                             </p>
                             <Flex>
-                                <buttonLike>
+                                <ButtonLike>
                                     <img alt={"like"} src={LikeImg}></img>
                                     <span>Like</span>
                                     <span>63</span>
-                                </buttonLike>
+                                </ButtonLike>
 
-                                <buttonComment>
+                                <ButtonComment>
                                     <span>Comment</span>
                                     <span>63</span>
-                                </buttonComment>
+                                </ButtonComment>
                             </Flex>
 
                             <p style={{
