@@ -1,5 +1,8 @@
-import axios from 'axios';
-import {useEffect, useState} from 'react';
+/* eslint-disable react/prop-types */
+
+import { Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 export const Card = styled.div`
@@ -26,36 +29,52 @@ const ImageContainer = styled.div`
     height: 260px;
 `;
 
-function RestaurantCard({restaurants}) {
-    return (
-        <div>
-            <Container>
-                {/* {restaurants.map(restaurant => )} */}
-                <Card>
-                    <div
-                        style={{
-                            marginTop: '4px',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            paddingLeft: '14px',
-                            paddingBottom: '15px',
-                        }}
-                    >
-                        <div>
-                            <h3>%RESTAURANT NAME%</h3>
+function RestaurantCard({ restaurants }) {
+  const navigate = useNavigate();
 
-                            <p>%RESTAURANT STREET%</p>
-                            <div>%AVERAGE REVIEW% %REVIEWS%</div>
-                        </div>
+  function handleClick(id) {
+    navigate(`/restaurant/${id}`, {
+      replace: true,
+    });
+  }
+
+  return (
+    <>
+      {restaurants?.map((restaurant, index) => (
+        <Fragment key={index}>
+          {!restaurant.image ? null : (
+            <div
+              onClick={() => handleClick(restaurant.id)}
+              style={{ cursor: 'pointer' }}
+            >
+              <Container>
+                <Card>
+                  <div
+                    style={{
+                      marginTop: '4px',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      padding: '10px 24px',
+                    }}
+                  >
+                    <div>
+                      <h3>{restaurant.name}</h3>
+
+                      <p>{restaurant.street}</p>
+                      <div>%AVERAGE REVIEW% %REVIEWS%</div>
                     </div>
-                    <ImageContainer>
-                        <Image
-                            src="https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?cs=srgb&dl=pexels-reneterp-1581384.jpg&fm=jpg"/>
-                    </ImageContainer>
+                  </div>
+                  <ImageContainer>
+                    <Image src={restaurant.image} alt="restaurant image" />
+                  </ImageContainer>
                 </Card>
-            </Container>
-        </div>
-    );
+              </Container>
+            </div>
+          )}
+        </Fragment>
+      ))}
+    </>
+  );
 }
 
 export default RestaurantCard;
