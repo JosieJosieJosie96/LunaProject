@@ -35,4 +35,8 @@ function Input({ register, children, htmlFor, type, name, value }) {
   );
 }
 
+// function form() {
+//   const { register, handleSubmit } = useform();
+// }
+
 export default Input;

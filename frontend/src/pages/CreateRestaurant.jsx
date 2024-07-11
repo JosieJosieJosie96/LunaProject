@@ -37,7 +37,7 @@ const LabelDiv = styled.div`
 `;
 
 function CreateRestaurant() {
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm();
   return (
     <>
       <ContainerStyled>
@@ -59,9 +59,11 @@ function CreateRestaurant() {
                 })}
               >
                 <option value="">Select...</option>
-                <option value="greek">Greek</option>
-                <option value="italian">Italian</option>
-                <option value="american">American</option>
+                <option value="Asian">Asian</option>
+                <option value="Italian">Italian</option>
+                <option value="Burger">Burger</option>
+                <option value="Arab">Arab</option>
+                <option value="Mexican">Mexican</option>
               </select>
             </div>
           </LabelDiv>

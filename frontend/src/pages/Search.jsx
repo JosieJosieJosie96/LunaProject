@@ -1,9 +1,12 @@
 import ReviewCard from '../components/ReviewCard';
 import UserCard from '../components/UserCard';
 import RestaurantCard from '../components/RestaurantCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CardContainer } from './Home';
+import axios from 'axios';
+import { BeatLoader } from 'react-spinners';
+import { getRestaurants, getReviews, getUsers } from '../api/api';
 
 const InputContainer = styled.div`
   display: flex;
@@ -46,6 +49,14 @@ const TextContainer = styled.div`
 
 function Search() {
   const [currentPage, setCurrentPage] = useState(<RestaurantCard />);
+  const [users, setUsers] = useState([]);
+  const [restaurants, setRestaurant] = useState([]);
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    getUsers(setUsers);
+    getRestaurants(setRestaurant);
+  }, []);
 
   return (
     <div>
@@ -74,7 +85,9 @@ function Search() {
             color:
               currentPage.type.name === 'RestaurantCard' ? 'black' : 'gray',
           }}
-          onClick={() => setCurrentPage(<RestaurantCard />)}
+          onClick={() =>
+            setCurrentPage(<RestaurantCard restaurants={restaurants} />)
+          }
         >
           RESTAURANTS
         </button>
@@ -95,7 +108,7 @@ function Search() {
               currentPage.type.name === 'UserCard' ? '2px solid orange' : '',
             color: currentPage.type.name === 'UserCard' ? 'black' : 'gray',
           }}
-          onClick={() => setCurrentPage(<UserCard />)}
+          onClick={() => setCurrentPage(<UserCard users={users} />)}
         >
           USERS
         </button>
@@ -107,15 +120,42 @@ function Search() {
           justifyContent: 'center',
         }}
       >
-        <CardContainer>
-          {currentPage}
-          {currentPage}
-          {currentPage}
-          {currentPage}
-        </CardContainer>
+        <CardContainer>{currentPage}</CardContainer>
       </div>
     </div>
   );
 }
 
 export default Search;
+
+// const token = window.localStorage.getItem('token');
+
+// const [isSuccess, setIsSuccess] = useState(false);
+// const [errorMessage, setErrorMessage] = useState('');
+// const [isLoading, setIsLoading] = useState(false);
+// async function getUsers(setUsers) {
+//   setIsLoading(true);
+//   setErrorMessage('');
+
+//   try {
+//     const res = await axios.get(
+//       `http://localhost:8000/backend/api/users/list/`,
+//       {
+//         headers: { Authorization: `Bearer ${token}` },
+//       },
+//     );
+
+//     setIsSuccess(true);
+//     setIsLoading(false);
+//     console.log(res.data);
+//     setUsers(res.data);
+
+//     return res.data;
+//   } catch (error) {
+//     console.log(error);
+//     console.log(error);
+//     setErrorMessage(error.response.data.email);
+//     setIsSuccess(false);
+//     setIsLoading(false);
+//   }
+// }

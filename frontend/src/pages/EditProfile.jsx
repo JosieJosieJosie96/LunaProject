@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Paragraph,
-  EditContainer
-} from "../components/Profile.styled.js";
-import Input from "../components/Input.jsx";
-import { Button } from "../../ui/Button.jsx";
+import { Paragraph, EditContainer } from '../components/Profile.styled.js';
+import Input from '../components/Input.jsx';
+import { Button } from '../../ui/Button.jsx';
 
 function EditProfile() {
   const [formData, setFormData] = useState({
@@ -15,7 +12,7 @@ function EditProfile() {
     location: '',
     phone: '',
     thingsILove: '',
-    description: ''
+    description: '',
   });
 
   const [loading, setLoading] = useState(true);
@@ -24,7 +21,9 @@ function EditProfile() {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/backend/api/users/me/');
+        const response = await axios.get(
+          'http://localhost:8000/backend/api/users/me/',
+        );
         setFormData({
           username: response.data.username,
           firstName: response.data.firstName,
@@ -32,7 +31,7 @@ function EditProfile() {
           location: response.data.location,
           phone: response.data.phone,
           thingsILove: response.data.thingsILove,
-          description: response.data.description
+          description: response.data.description,
         });
         setLoading(false);
       } catch (err) {
@@ -47,14 +46,17 @@ function EditProfile() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.patch("http://localhost:8000/backend/api/users/me/", formData);
+      const response = await axios.patch(
+        'http://localhost:8000/backend/api/users/me/',
+        formData,
+      );
       console.log('Profile updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating profile:', error);
