@@ -57,7 +57,7 @@ function Home() {
         {!restaurantsHome.length
           ? null
           : restaurantsHome
-              .slice(0, 7)
+              .slice(0, 4)
               .map((restaurant, index) => (
                 <RestaurantHome key={index} restaurant={restaurant} />
               ))}

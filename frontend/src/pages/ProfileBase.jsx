@@ -97,24 +97,24 @@ function ProfileBase() {
             <div style={{
                 margin: '0', fontSize: '24px', fontWeight: '700', marginBottom: '12px'
             }} className={'name'}>
-                <div>{userData?.first_name} Name</div>
+                <div>{userData?.username} Name</div>
             </div>
             <div style={{
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
             }} className={'location'}>
-                {userData?.location} Location
+                {userData?.location}
             </div>
             <div style={{
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
             }}
                  className={'reviews'}>
-                {userData?.reviews} Reviews
+                {userData?.review.length} Reviews
             </div>
             <div style={{
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
             }}
                  className={'comments'}>
-                {userData?.comments} comments
+                {userData?.comments.length} Comments
             </div>
         </ProfileHeaderInfo>
         <MainContainer>
@@ -171,7 +171,7 @@ function ProfileBase() {
 
             <RightContainer>
                 <h3 style={{fontSize: '20px', fontWeight: '700', marginBottom: '27px'}}
-                >ABOUT {userData?.first_name}</h3>
+                >ABOUT {userData?.username}</h3>
                 <div style={{
                     marginBottom: '25px'
                 }} className={'location2'}>
@@ -190,7 +190,7 @@ function ProfileBase() {
                     }}>Luna member since</h3>
                     <p style={{
                         margin: "0",
-                    }}>{new Date(userData?.created).toLocaleDateString()}</p>
+                    }}>{new Date(userData?.date_joined).toLocaleDateString()}</p>
                 </div>
                 <div style={{
                     marginBottom: '25px'
