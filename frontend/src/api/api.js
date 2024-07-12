@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-export const getUsers = async (setUsers, token) => {
+export const getUsers = async (setUsers) => {
   // const token = window.localStorage.getItem('token');
 
   try {
     const res = await axios.get(
       `https://luna1.propulsion-learn.ch/backend/api/users/list/`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      },
+      // {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // },
     );
 
     setUsers(res.data);
@@ -18,15 +18,15 @@ export const getUsers = async (setUsers, token) => {
   }
 };
 
-export const getRestaurants = async (setRestaurants, token) => {
+export const getRestaurants = async (setRestaurants) => {
   try {
     const res = await axios.get(
       `https://luna1.propulsion-learn.ch/backend/api/restaurants/`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      },
+      // {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // },
     );
-
+    console.log(res.data);
     setRestaurants(res.data);
     return res.data;
   } catch (error) {
