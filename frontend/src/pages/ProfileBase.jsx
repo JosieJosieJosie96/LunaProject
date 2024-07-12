@@ -21,7 +21,7 @@ function ProfileBase() {
 
   // const [error, setError] = useState(null);
   const GetMe = async () => {
-    const token = window.localStorage.getItem('token');
+    // const token = window.localStorage.getItem('token');
 
     try {
       const res = await axios.get(
