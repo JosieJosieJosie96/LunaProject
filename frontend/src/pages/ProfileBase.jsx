@@ -108,13 +108,13 @@ function ProfileBase() {
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
             }}
                  className={'reviews'}>
-                {userData?.review.length} Reviews
+                {userData?.review} Reviews
             </div>
             <div style={{
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
             }}
                  className={'comments'}>
-                {userData?.comments.length} Comments
+                {userData?.comments} Comments
             </div>
         </ProfileHeaderInfo>
         <MainContainer>
@@ -171,7 +171,7 @@ function ProfileBase() {
 
             <RightContainer>
                 <h3 style={{fontSize: '20px', fontWeight: '700', marginBottom: '27px'}}
-                >ABOUT {userData?.username}</h3>
+                >ABOUT {userData?.first_name}</h3>
                 <div style={{
                     marginBottom: '25px'
                 }} className={'location2'}>

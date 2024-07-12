@@ -66,7 +66,7 @@ function RestaurantPageReviewCard({ setIsClicked, isClicked, review }) {
           <div style={{ width: '112px', overflow: 'hidden' }}>
             <img
               src={
-                !review.profile_picture ? `${Avatar}` : review.profile_picture
+                !review.user.profile_picture ? `${Avatar}` : review.user.profile_picture
               }
               style={{
                 height: '100%',
