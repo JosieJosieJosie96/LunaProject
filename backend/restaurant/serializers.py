@@ -1,3 +1,4 @@
+from django.db.models import Avg
 from rest_framework import serializers
 
 
@@ -14,6 +15,16 @@ class RestaurantCreateSerializer(serializers.ModelSerializer):
 
 class RestaurantGetSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+    rating = serializers.SerializerMethodField()
+    review_count = serializers.SerializerMethodField()
+
+    def get_rating(self, restaurant):
+        restaurant_review = restaurant.review_restaurant.all().aggregate(Avg('rating'))
+        return restaurant_review
+
+    def get_review_count(self, restaurant):
+        restaurant_review = restaurant.review_restaurant.all().count()
+        return restaurant_review
 
     class Meta:
         model = Restaurant
