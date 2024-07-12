@@ -97,7 +97,7 @@ function ProfileBase() {
             <div style={{
                 margin: '0', fontSize: '24px', fontWeight: '700', marginBottom: '12px'
             }} className={'name'}>
-                <div>{userData?.username} Name</div>
+                <div>{userData?.username}</div>
             </div>
             <div style={{
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
@@ -171,7 +171,7 @@ function ProfileBase() {
 
             <RightContainer>
                 <h3 style={{fontSize: '20px', fontWeight: '700', marginBottom: '27px'}}
-                >ABOUT {userData?.first_name}</h3>
+                >ABOUT {userData?.username}</h3>
                 <div style={{
                     marginBottom: '25px'
                 }} className={'location2'}>
