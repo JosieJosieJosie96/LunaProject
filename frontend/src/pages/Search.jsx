@@ -45,10 +45,10 @@ function Search() {
   const [currentPage, setCurrentPage] = useState(<RestaurantCard />);
   const [users, setUsers] = useState([]);
   const [restaurants, setRestaurant] = useState([]);
-  //   const token = window.localStorage.getItem('token');
+  const token = window.localStorage.getItem('token');
 
   useEffect(() => {
-    getUsers(setUsers);
+    getUsers(setUsers, token);
     getRestaurants(setRestaurant);
   }, []);
   console.log(restaurants);

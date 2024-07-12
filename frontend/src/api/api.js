@@ -10,7 +10,7 @@ export const getUsers = async (setUsers) => {
       //   headers: { Authorization: `Bearer ${token}` },
       // },
     );
-
+    console.log(res.data);
     setUsers(res.data);
     return res.data;
   } catch (error) {
@@ -34,8 +34,8 @@ export const getRestaurants = async (setRestaurants) => {
   }
 };
 
-export const getReviews = async (setReviews) => {
-  const token = window.localStorage.getItem('token');
+export const getReviews = async (setReviews, token) => {
+  // const token = window.localStorage.getItem('token');
 
   try {
     const res = await axios.get(
