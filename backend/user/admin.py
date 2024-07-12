@@ -15,7 +15,7 @@ class UserAdmin(UserAdmin):
     )
     # fields when reading / updating an instance
     fieldsets = (
-        (None, {'fields': ('email', 'username', 'password', 'profile_picture')}),
+        (None, {'fields': ('email', 'username', 'password', 'first_name', 'last_name', 'things_i_love', 'profile_picture', 'description')}),
     )
     # fields which are shown when looking at an list of instances
     list_display = ('email', 'first_name', 'last_name', 'is_staff')
