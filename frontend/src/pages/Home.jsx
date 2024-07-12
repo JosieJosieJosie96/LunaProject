@@ -1,6 +1,6 @@
 import HeroHeader from '../components/HeroHeader';
 import { HeadingForm } from '../../ui/HeadingForm';
-import RestaurantCard from '../components/RestaurantCard';
+// import RestaurantCard from '../components/RestaurantCard';
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
@@ -11,6 +11,7 @@ export const CardContainer = styled.div`
     /* column-gap: 12px; */
     width: 83%;
     margin-bottom: 8%;
+    row-gap: 30px;
 `;
 
 function Home() {
@@ -45,10 +46,10 @@ function Home() {
       </div>
 
       <CardContainer>
+        {/* <RestaurantCard />
+        {/* <RestaurantCard />
         <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
+        <RestaurantCard /> */}
       </CardContainer>
     </div>
   );
