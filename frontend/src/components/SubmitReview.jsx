@@ -11,7 +11,7 @@ const SubmitReviewPage = ({ restaurantId }) => {
   );
 };
 SubmitReviewPage.propTypes = {
-  restaurantId: PropTypes.number.isRequired,  // Define prop types
+  restaurantId: PropTypes.number.isRequired,
 };
 
 export default SubmitReviewPage;
