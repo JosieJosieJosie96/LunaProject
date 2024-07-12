@@ -7,7 +7,8 @@ import { BeatLoader } from 'react-spinners';
 import { useForm } from 'react-hook-form';
 
 // eslint-disable-next-line react/prop-types
-function EditProfile({ token }) {
+function EditProfile() {
+  const token = window.localStorage.getItem('token');
   const { register, handleSubmit, setValue } = useForm();
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -16,7 +17,7 @@ function EditProfile({ token }) {
     const fetchProfileData = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:8000/backend/api/users/me/',
+          'https://luna1.propulsion-learn.ch/backend/api/users/me/',
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -54,7 +55,7 @@ function EditProfile({ token }) {
     setErrorMessage('');
     try {
       const response = await axios.patch(
-        'http://localhost:8000/backend/api/users/me/',
+        'https://luna1.propulsion-learn.ch/backend/api/users/me/',
         data,
         {
           headers: {
