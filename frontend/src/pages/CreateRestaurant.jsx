@@ -86,7 +86,7 @@ function CreateRestaurant() {
   return (
     <>
       {isSuccess ? (
-        navigate('/search')
+        navigate('/profile')
       ) : (
         <ContainerStyled>
           <HeadingForm>CREATE NEW RESTAURANT</HeadingForm>
