@@ -70,7 +70,11 @@ function ProfileBase() {
         <ProfileLeftContainer>
           <div className={'profileimage'}>
             <img
-              src={`${!userData?.profile_picture} ? ${Avatar} : ${userData?.profile_picture}`}
+              src={
+                !userData?.profile_picture
+                  ? `${Avatar}`
+                  : userData?.profile_picture
+              }
             />
           </div>
           <h3>{userData?.first_name}s profile</h3>
