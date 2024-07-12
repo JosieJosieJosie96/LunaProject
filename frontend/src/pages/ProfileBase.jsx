@@ -13,10 +13,11 @@ import ProfileComments from './ProfileComments';
 import ProfileReviews from './ProfileReviews';
 import ProfileRestaurants from './ProfileRestaurants';
 import EditProfile from './EditProfile';
+import Avatar from '../assets/svg/avatar.jpeg';
 
 function ProfileBase() {
   const token = localStorage.getItem('token');
-  const [currentSection, setCurrentSection] = useState('editProfile');
+  const [currentSection, setCurrentSection] = useState('reviews');
   const [userData, setUserData] = useState([]);
 
   // const [error, setError] = useState(null);
@@ -38,6 +39,7 @@ function ProfileBase() {
     }
   };
   useEffect(() => {
+    setCurrentSection('reviews');
     GetMe();
   }, []);
 
@@ -67,7 +69,9 @@ function ProfileBase() {
       <MainContainer>
         <ProfileLeftContainer>
           <div className={'profileimage'}>
-            <img src={'path/to/profile-image.jpg'} alt="ProfileBase" />
+            <img
+              src={`${!userData?.profile_picture} ? ${Avatar} : ${userData?.profile_picture}`}
+            />
           </div>
           <h3>{userData?.first_name}s profile</h3>
           <SelectionContainer onClick={() => setCurrentSection('reviews')}>
