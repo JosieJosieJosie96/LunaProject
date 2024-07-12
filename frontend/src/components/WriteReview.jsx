@@ -52,7 +52,7 @@ function WriteReview({ setIsReviewButtonClicked, restaurantId }) {
     setErrorMessage('');
     try {
       const res = await axios.post(
-        `https://luna1.propulsion-learn.ch/backend/api/reviews/new/${restaurantId}`,
+        `https://luna1.propulsion-learn.ch/backend/api/reviews/new/${restaurantId}/`,
         obj,
         {
           headers: {

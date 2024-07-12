@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-export const getUsers = async (setUsers) => {
+export const getUsers = async (setUsers, token) => {
   // const token = window.localStorage.getItem('token');
 
   try {
     const res = await axios.get(
       `https://luna1.propulsion-learn.ch/backend/api/users/list/`,
-      // {
-      //   headers: { Authorization: `Bearer ${token}` },
-      // },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
     );
     console.log(res.data);
     setUsers(res.data);
