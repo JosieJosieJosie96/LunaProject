@@ -1,7 +1,13 @@
 import {Button} from "../../ui/Button.jsx";
 import {ContentContainer, SelectionContainer} from "../components/Profile.styled.js";
+import { useNavigate } from 'react-router-dom';
+function ProfileRestaurants()
+{
+    const navigate = useNavigate();
 
-function ProfileRestaurants() {
+    const handleCreateRestaurantClick = () => {
+        navigate('/createRestaurant');
+    };
     return(
         <>
             <ContentContainer>
@@ -18,7 +24,7 @@ function ProfileRestaurants() {
 
             </ContentContainer>
             <div>
-                <Button>Create Restaurant</Button>
+                <Button onClick={handleCreateRestaurantClick}>Create Restaurant</Button>
             </div>
         </>
     )
