@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Facebook from '../assets/svg/facebook.svg'
+import Twitter from '../assets/svg/twitter.svg'
+import Googleplus from '../assets/svg/googleplus.svg'
+import Instagram from '../assets/svg/instagram.svg'
+
 
 const FooterStyled = styled.footer`
   width: 100%;
@@ -79,16 +84,16 @@ function Footer() {
         </div>
         <IconsDiv>
           <StyledImgDiv>
-            <img src="src/assets/svg/facebook.svg" />
+            <img src={Facebook} />
           </StyledImgDiv>
           <StyledImgDiv>
-            <img src="src/assets/svg/twitter.svg" />
+            <img src={Twitter} />
           </StyledImgDiv>
           <StyledImgDiv>
-            <img src="src/assets/svg/googleplus.svg" />
+            <img src={Googleplus} />
           </StyledImgDiv>
           <StyledImgDiv>
-            <img src="src/assets/svg/instagram.svg" />
+            <img src={Instagram} />
           </StyledImgDiv>
         </IconsDiv>
       </Flex>
