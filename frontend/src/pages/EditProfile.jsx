@@ -7,7 +7,8 @@ import { BeatLoader } from 'react-spinners';
 import { useForm } from 'react-hook-form';
 
 // eslint-disable-next-line react/prop-types
-function EditProfile({ token }) {
+function EditProfile() {
+  const token = window.localStorage.getItem('token');
   const { register, handleSubmit, setValue } = useForm();
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');

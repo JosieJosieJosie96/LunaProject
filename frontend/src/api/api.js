@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const getUsers = async (setUsers) => {
-  const token = window.localStorage.getItem('token');
+export const getUsers = async (setUsers, token) => {
+  // const token = window.localStorage.getItem('token');
 
   try {
     const res = await axios.get(
@@ -18,9 +18,7 @@ export const getUsers = async (setUsers) => {
   }
 };
 
-export const getRestaurants = async (setRestaurants) => {
-  const token = window.localStorage.getItem('token');
-
+export const getRestaurants = async (setRestaurants, token) => {
   try {
     const res = await axios.get(
       `https://luna1.propulsion-learn.ch/backend/api/restaurants/`,
