@@ -14,5 +14,5 @@ class Review(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     liked_by = models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True, related_name="liked_by")
-    restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE, null=True)
+    restaurant = models.ForeignKey(to=Restaurant, on_delete=models.CASCADE, null=True, related_name='review_restaurant')
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
