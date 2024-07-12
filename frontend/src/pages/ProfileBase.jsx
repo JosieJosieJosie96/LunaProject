@@ -127,7 +127,7 @@ function ProfileBase() {
             </ProfileLeftContainer>
 
             <ProfileNavigation>
-                <h3>{userData?.first_name}s profile</h3>
+                <h3>{userData?.username}'s profile</h3>
                 <SelectionContainer onClick={() => setCurrentSection('reviews')}>
                     <img style={{
                         marginRight: '24px'
