@@ -54,7 +54,7 @@ function EditProfile({ token }) {
     setErrorMessage('');
     try {
       const response = await axios.patch(
-        'http://localhost:8000/backend/api/users/me/',
+        'https://luna1.propulsion-learn.ch/backend/api/users/me/',
         data,
         {
           headers: {

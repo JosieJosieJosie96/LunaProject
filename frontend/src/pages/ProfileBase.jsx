@@ -15,30 +15,30 @@ import ProfileRestaurants from './ProfileRestaurants';
 import EditProfile from './EditProfile';
 
 function ProfileBase() {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem('token');
   const [currentSection, setCurrentSection] = useState('editProfile');
   const [userData, setUserData] = useState([]);
 
   // const [error, setError] = useState(null);
- const GetMe = async () => {
-  const token = window.localStorage.getItem('token');
+  const GetMe = async () => {
+    const token = window.localStorage.getItem('token');
 
-  try {
-    const res = await axios.get("http://localhost:8000/backend/api/users/me/", {
-      headers: { Authorization: `Bearer ${token}`},
-    });
-setUserData(res.data)
-   console.log(res.data)
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+    try {
+      const res = await axios.get(
+        'https://luna1.propulsion-learn.ch/backend/api/users/me/',
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      setUserData(res.data);
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-
-GetMe()
-
-
+    GetMe();
   }, []);
 
   const renderSection = () => {
@@ -56,12 +56,10 @@ GetMe()
     }
   };
 
-
-
   // if (error) {
   //   return <div>Error loading user data</div>;
   // }
-  console.log(userData)
+  console.log(userData);
 
   return (
     <>
@@ -82,7 +80,10 @@ GetMe()
           </SelectionContainer>
           <SelectionContainer onClick={() => setCurrentSection('restaurants')}>
             <h3>Restaurants</h3>
-            <img src={'frontend/src/assets/svg/restaurant.svg'} alt={'restaurant'} />
+            <img
+              src={'frontend/src/assets/svg/restaurant.svg'}
+              alt={'restaurant'}
+            />
           </SelectionContainer>
           <SelectionContainer onClick={() => setCurrentSection('editProfile')}>
             <h3>Edit Profile</h3>
@@ -114,19 +115,15 @@ GetMe()
 
         <TopMiddleContainer>
           <div className={'name'}>
-
             <div>{userData?.first_name}</div>
           </div>
           <div className={'location'}>
-
             <p>{userData?.location}</p>
           </div>
           <div className={'reviews'}>
-
             <p>{userData?.reviews} reviews</p>
           </div>
           <div className={'comments'}>
-
             <p>{userData?.comments} comments</p>
           </div>
         </TopMiddleContainer>
@@ -136,5 +133,3 @@ GetMe()
 }
 
 export default ProfileBase;
-
-
