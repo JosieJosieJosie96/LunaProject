@@ -10,7 +10,9 @@ import { Button } from '../../ui/Button';
 import RestaurantPageReviewCard from '../components/RestaurantPageReviewCard';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { getRestaurantByID } from '../api/api';
+import { getRestaurantByID, getReviewsByID } from '../api/api';
+import Money from '../assets/svg/money.svg';
+import Clock from '../assets/svg/clock.svg';
 
 const HeroTextContainer = styled.div`
   position: absolute;
@@ -31,12 +33,15 @@ function RestaurantPage() {
   const params = useParams();
   const restaurantId = params.restaurantId;
   const [restaurantData, setRestaurantData] = useState([]);
+  const [reviewsData, setReviewsData] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const [isReviewButtonClicked, setIsReviewButtonClicked] = useState(false);
 
   useEffect(() => {
+    getReviewsByID(setReviewsData, restaurantId);
     getRestaurantByID(setRestaurantData, restaurantId);
   }, []);
+  console.log(reviewsData);
 
   return (
     <>
@@ -115,10 +120,16 @@ function RestaurantPage() {
                       </div>
                     </div>
                   </div>
-                  <RestaurantPageReviewCard
-                    setIsClicked={setIsClicked}
-                    isClicked={isClicked}
-                  />
+                  {!reviewsData.length
+                    ? null
+                    : reviewsData.map((review, index) => (
+                        <RestaurantPageReviewCard
+                          key={index}
+                          review={review}
+                          setIsClicked={setIsClicked}
+                          isClicked={isClicked}
+                        />
+                      ))}
                 </div>
               </div>
               <div
@@ -136,11 +147,13 @@ function RestaurantPage() {
                     alignItems: 'center',
                   }}
                 >
-                  <img
-                    style={{ paddingRight: '12px' }}
-                    src="src/assets/svg/clock.svg"
-                  />
-                  <p>{restaurantData?.opening_hours}</p>
+                  <img style={{ paddingRight: '12px' }} src={Clock} />
+                  <p style={{ color: 'black' }}>
+                    Opening Hours:{' '}
+                    {!restaurantData.opening_hours
+                      ? 'Not specified'
+                      : restaurantData.opening_hours}
+                  </p>
                 </div>
                 <div
                   style={{
@@ -149,11 +162,13 @@ function RestaurantPage() {
                     alignItems: 'center',
                   }}
                 >
-                  <img
-                    style={{ paddingRight: '12px' }}
-                    src="src/assets/svg/money.svg"
-                  />
-                  <p>{restaurantData?.price_level}</p>
+                  <img style={{ paddingRight: '12px' }} src={Money} />
+                  <p>
+                    Price Level:{' '}
+                    {!restaurantData?.price_level
+                      ? 'Not Specified'
+                      : restaurantData?.price_level}
+                  </p>
                 </div>
                 <div
                   style={{

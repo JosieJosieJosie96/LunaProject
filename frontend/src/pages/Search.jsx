@@ -1,10 +1,10 @@
 import ReviewCard from '../components/ReviewCard';
 import UserCard from '../components/UserCard';
-import RestaurantCard from '../components/RestaurantCard';
+import RestaurantCard, { Container } from '../components/RestaurantCard';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CardContainer } from './Home';
-import { getRestaurants, getUsers } from '../api/api';
+import { getRestaurants, getReviews, getUsers } from '../api/api';
 
 const InputContainer = styled.div`
   display: flex;
@@ -42,17 +42,40 @@ const TextContainer = styled.div`
 `;
 
 function Search() {
-  const [currentPage, setCurrentPage] = useState(<RestaurantCard />);
+  // const [currentPage, setCurrentPage] = useState(<RestaurantCard />);
+  const [restaurantIsClicked, setRestaurantIsClicked] = useState(false);
+  const [usersIsClicked, setUsersIsClicked] = useState(false);
+  const [reviewsIsClicked, setReviewsIsClicked] = useState(false);
   const [users, setUsers] = useState([]);
+  const [reviews, setReviews] = useState([]);
   const [restaurants, setRestaurant] = useState([]);
   const token = window.localStorage.getItem('token');
+
+  function handleRestaurantClick() {
+    setRestaurantIsClicked(true);
+    setReviewsIsClicked(false);
+    setUsersIsClicked(false);
+  }
+  function handleUsersClick() {
+    setUsersIsClicked(true);
+    setRestaurantIsClicked(false);
+    setReviewsIsClicked(false);
+  }
+  function handleReviewsClick() {
+    setReviewsIsClicked(true);
+    setUsersIsClicked(false);
+    setRestaurantIsClicked(false);
+  }
 
   useEffect(() => {
     getUsers(setUsers, token);
     getRestaurants(setRestaurant);
+    getReviews(setReviews, token);
+    setRestaurantIsClicked(true);
   }, []);
   console.log(restaurants);
   console.log(users);
+  console.log(reviews);
 
   return (
     <div>
@@ -75,41 +98,29 @@ function Search() {
       <TextContainer>
         <button
           style={{
-            borderBottom:
-              currentPage.type.name === 'RestaurantCard'
-                ? '2px solid orange'
-                : '',
-            color:
-              currentPage.type.name === 'RestaurantCard' ? 'black' : 'gray',
             fontSize: '20px',
             fontWeight: 'bold',
           }}
-          onClick={() => setCurrentPage(<RestaurantCard />)}
+          onClick={() => handleRestaurantClick()}
         >
           RESTAURANTS
         </button>
 
         <button
           style={{
-            borderBottom:
-              currentPage.type.name === 'ReviewCard' ? '2px solid orange' : '',
-            color: currentPage.type.name === 'ReviewCard' ? 'black' : 'gray',
             fontSize: '20px',
             fontWeight: 'bold',
           }}
-          onClick={() => setCurrentPage(<ReviewCard />)}
+          onClick={() => handleReviewsClick()}
         >
           REVIEWS
         </button>
         <button
           style={{
-            borderBottom:
-              currentPage.type.name === 'UserCard' ? '2px solid orange' : '',
-            color: currentPage.type.name === 'UserCard' ? 'black' : 'gray',
             fontSize: '20px',
             fontWeight: 'bold',
           }}
-          onClick={() => setCurrentPage(<UserCard />)}
+          onClick={() => handleUsersClick()}
         >
           USERS
         </button>
@@ -121,20 +132,34 @@ function Search() {
           justifyContent: 'center',
         }}
       >
-        {currentPage.type.name === 'UserCard' && (
-          <CardContainer>
-            <UserCard users={users} />
-          </CardContainer>
+        {restaurantIsClicked && (
+          <Container>
+            {!restaurants.length
+              ? null
+              : restaurants?.map((restaurant, index) => (
+                  <RestaurantCard key={index} restaurant={restaurant} />
+                ))}
+          </Container>
         )}
-        {currentPage.type.name === 'RestaurantCard' && (
-          <CardContainer>
-            <RestaurantCard restaurants={restaurants} />
-          </CardContainer>
+
+        {reviewsIsClicked && (
+          <Container>
+            {!reviews.length
+              ? null
+              : reviews?.map((review, index) => (
+                  <ReviewCard key={index} review={review} />
+                ))}
+          </Container>
         )}
-        {currentPage.type.name === 'ReviewCard' && (
-          <CardContainer>
-            <ReviewCard />
-          </CardContainer>
+
+        {usersIsClicked && (
+          <Container>
+            {!users.length
+              ? null
+              : users?.map((user, index) => (
+                  <UserCard key={index} user={user} />
+                ))}
+          </Container>
         )}
       </div>
     </div>
@@ -142,35 +167,3 @@ function Search() {
 }
 
 export default Search;
-
-// const token = window.localStorage.getItem('token');
-
-// const [isSuccess, setIsSuccess] = useState(false);
-// const [errorMessage, setErrorMessage] = useState('');
-// const [isLoading, setIsLoading] = useState(false);
-// async function getUsers(setUsers) {
-//   setIsLoading(true);
-//   setErrorMessage('');
-
-//   try {
-//     const res = await axios.get(
-//       `http://localhost:8000/backend/api/users/list/`,
-//       {
-//         headers: { Authorization: `Bearer ${token}` },
-//       },
-//     );
-
-//     setIsSuccess(true);
-//     setIsLoading(false);
-//     console.log(res.data);
-//     setUsers(res.data);
-
-//     return res.data;
-//   } catch (error) {
-//     console.log(error);
-//     console.log(error);
-//     setErrorMessage(error.response.data.email);
-//     setIsSuccess(false);
-//     setIsLoading(false);
-//   }
-// }

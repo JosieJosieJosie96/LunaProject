@@ -1,10 +1,6 @@
 /* eslint-disable react/prop-types */
-
-import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import styled from 'styled-components';
-import RatingReview from "./Star.jsx";
 
 export const Card = styled.div`
   border: 1px solid #ebebeb;
@@ -16,7 +12,15 @@ export const Card = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 100%;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-content: center;
+  justify-items: center;
+  /* column-gap: 12px; */
+  width: 83%;
+  margin-bottom: 8%;
+  row-gap: 30px;
 `;
 
 const Image = styled.img`
@@ -30,7 +34,7 @@ const ImageContainer = styled.div`
   height: 260px;
 `;
 
-function RestaurantCard({ restaurants }) {
+function RestaurantCard({ restaurant }) {
   const navigate = useNavigate();
 
   function handleClick(id) {
@@ -41,57 +45,42 @@ function RestaurantCard({ restaurants }) {
 
   return (
     <>
-      {restaurants?.map((restaurant, index) => (
-        <Fragment key={index}>
-          {!restaurant.image ? null : (
+      {!restaurant.image ? null : (
+        <div
+          onClick={() => handleClick(restaurant.id)}
+          style={{ cursor: 'pointer' }}
+        >
+          {/* <CardContainer> */}
+          <Card>
             <div
-              onClick={() => handleClick(restaurant.id)}
-              style={{ cursor: 'pointer' }}
+              style={{
+                marginTop: '4px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                padding: '10px 24px',
+              }}
             >
-              <Container>
-                <Card>
-                  <div
-                    style={{
-                      marginTop: '4px',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      padding: '10px 24px',
-                    }}
-                  >
-                    <div>
-                      <h3>{restaurant.name}</h3>
+              <div>
+                <h3>{restaurant.name}</h3>
 
-                      <p>{restaurant.street}</p>
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontSize: '20px',
-                            color: '#4C4C4C',
-                          }}
-                        >
-                          21
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <ImageContainer>
-                    <Image src={restaurant.image} alt="restaurant image" />
-                  </ImageContainer>
-                </Card>
-              </Container>
+                <p>{restaurant.street}</p>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                ></div>
+              </div>
             </div>
-          )}
-        </Fragment>
-      ))}
+            <ImageContainer>
+              <Image src={restaurant.image} alt="restaurant image" />
+            </ImageContainer>
+          </Card>
+        </div>
+      )}
     </>
   );
 }
 
 export default RestaurantCard;
-

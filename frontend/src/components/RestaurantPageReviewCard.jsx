@@ -2,6 +2,8 @@
 import styled from 'styled-components';
 import { Input } from './HeroHeader';
 import { Button } from '../../ui/Button';
+import Avatar from '../assets/svg/avatar.jpeg';
+import StarRating from '../../ui/StarRatings';
 
 const ButtonStyled = styled.button`
   cursor: pointer;
@@ -40,7 +42,7 @@ const CommentsCard = styled.div`
   }
 `;
 
-function RestaurantPageReviewCard({ setIsClicked, isClicked }) {
+function RestaurantPageReviewCard({ setIsClicked, isClicked, review }) {
   return (
     <div
       style={{
@@ -63,7 +65,9 @@ function RestaurantPageReviewCard({ setIsClicked, isClicked }) {
         >
           <div style={{ width: '112px', overflow: 'hidden' }}>
             <img
-              src="src/assets/img/244b33a5c8d738c298296d73d0d840348799e37f.png"
+              src={
+                !review.profile_picture ? `${Avatar}` : review.profile_picture
+              }
               style={{
                 height: '100%',
                 width: '100%',
@@ -73,28 +77,18 @@ function RestaurantPageReviewCard({ setIsClicked, isClicked }) {
             />
           </div>
           <div>
-            <h3 style={{ color: '#f59e0b' }}>Name</h3>
-            <p>%TOTAL REVIEWS%</p>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <button>
-              <img src="src/assets/svg/star.svg" />
-            </button>
+            <h3 style={{ color: '#f59e0b' }}>
+              {!review.user.first_name
+                ? 'Not Specified'
+                : review.user.first_name}
+            </h3>
+
+            <StarRating maxRating={5} rating={review.rating} />
           </div>
         </div>
-        <p style={{ paddingRight: '30px' }}>DATE</p>
       </div>
       <div style={{ padding: '8px 8px' }}>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-          totam obcaecati doloremque ipsam. Iusto quisquam dolores, explicabo
-          sed soluta nostrum dolor ratione omnis corrupti ea!
-        </p>
+        <p>{review.text_content}</p>
         <div
           style={{
             display: 'flex',
