@@ -97,7 +97,7 @@ function ProfileBase() {
             <div style={{
                 margin: '0', fontSize: '24px', fontWeight: '700', marginBottom: '12px'
             }} className={'name'}>
-                <div>{userData?.username} Name</div>
+                <div>{userData?.username}</div>
             </div>
             <div style={{
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
@@ -108,13 +108,13 @@ function ProfileBase() {
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
             }}
                  className={'reviews'}>
-                {userData?.review.length} Reviews
+                {userData?.review} Reviews
             </div>
             <div style={{
                 marginBottom: '5px', fontSize: '18px', fontWeight: '300',
             }}
                  className={'comments'}>
-                {userData?.comments.length} Comments
+                {userData?.comments} Comments
             </div>
         </ProfileHeaderInfo>
         <MainContainer>
