@@ -33,6 +33,21 @@ export const getRestaurants = async (setRestaurants) => {
     console.log(error);
   }
 };
+export const getRestaurantsHome = async (setRestaurants) => {
+  try {
+    const res = await axios.get(
+      `https://luna1.propulsion-learn.ch/backend/api/restaurants/`,
+      // {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // },
+    );
+    console.log(res.data);
+    setRestaurants(res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getRestaurantByID = async (setRestaurantData, id) => {
   try {
